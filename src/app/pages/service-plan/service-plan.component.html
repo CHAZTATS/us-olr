@@ -1,0 +1,12 @@
+<app-page [title]="title">
+    <form>
+        <input type="radio" [(ngModel)]="didYouBuyAServicePlan" name="didYouBuyAServicePlan" [value]="true">Yes
+        <input type="radio" [(ngModel)]="didYouBuyAServicePlan" name="didYouBuyAServicePlan" [value]="false">No
+    </form>
+    <div class="actions">
+        <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" color="primary"
+            [disabled]="didYouBuyAServicePlan === undefined" (click)="continueClicked()">
+            <p>Continue</p>
+        </app-text-button>
+    </div>
+</app-page>

@@ -1,0 +1,16 @@
+<app-page [title]="title">
+    <div class="checkboxes">
+        @for (appliance of appliances; track $index) {
+        <div class="checkbox">
+            <input type="checkbox" (change)="onChange($event.target.checked, appliance)">
+            <label>{{appliance}}</label>
+        </div>
+        }
+    </div>
+    <div class="actions">
+        <app-text-button [height]="48" [padding]="'0px 20px'" [fontSize]="20" color="primary"
+            (click)="continueClicked()">
+            <p>{{selectedAppliances.length > 0 ? 'Continue' : 'Skip this step'}}</p>
+        </app-text-button>
+    </div>
+</app-page>

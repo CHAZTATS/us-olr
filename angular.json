@@ -25,15 +25,6 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
             "scripts": []
           },
           "configurations": {
@@ -56,9 +47,41 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "whirlpool": {
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/whirlpool"
+                }
+              ],
+              "styles": [
+                "src/styles.scss",
+                "src/themes/whirlpool.scss"
+              ]
+            },
+            "amana": {
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/amana"
+                }
+              ],
+              "styles": [
+                "src/styles.scss",
+                "src/themes/amana.scss"
+              ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development,whirlpool"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -68,9 +91,15 @@
             },
             "development": {
               "buildTarget": "us-olr:build:development"
+            },
+            "whirlpool": {
+              "buildTarget": "us-olr:build:whirlpool"
+            },
+            "amana": {
+              "buildTarget": "us-olr:build:amana"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development,whirlpool"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

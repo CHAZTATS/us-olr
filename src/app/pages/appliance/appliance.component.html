@@ -1,0 +1,10 @@
+<app-page [title]="title">
+    <div class="buttons">
+        @for (appliance of appliances; track $index) {
+        <app-text-button [width]="295" [height]="50" padding="8px 16px" (click)="applianceClicked(appliance)">
+            <p>{{appliance.text}}</p>
+        </app-text-button>
+        }
+    </div>
+
+</app-page>

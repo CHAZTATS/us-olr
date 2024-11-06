@@ -1,0 +1,14 @@
+<app-page [title]="title">
+    <div class="buttons">
+        @for (applianceType of applianceTypes; track $index) {
+        <app-icon-button [icon]="applianceType.icon" [text]="applianceType.text"
+            (click)="applianceTypeClicked(applianceType)"></app-icon-button>
+        }
+    </div>
+
+    <div class="country-check">
+        <p>United States Registration only.</p>
+        <a>Registering in Canada? Visit here</a>
+    </div>
+
+</app-page>

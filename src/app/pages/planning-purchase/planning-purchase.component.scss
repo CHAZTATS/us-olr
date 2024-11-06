@@ -1,0 +1,12 @@
+.checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+
+    .checkbox {
+        width: 50%;
+    }
+}
+
+.actions {
+    margin-top: 24px;
+}

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../../environment/environment';
 import { ApplianceType } from '../../pages/appliance-type/appliance-type.container';
+import { Appliance } from '../../pages/appliance/appliance.container';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class RegistrationService {
     this.regData = new RegistrationData();
   }
 
-  getAppliances(): Observable<ApplianceType[]> {
+  getApplianceCategories(): Observable<ApplianceType[]> {
     return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/categories`).pipe(
       map(x => {
         console.log(x);
@@ -28,16 +29,34 @@ export class RegistrationService {
           applianceType.icon = y.icon;
           applianceType.icon = 'mug-saucer';
           applianceType.text = y.categoryName;
+          applianceType.code = y.categoryCode;
           list.push(applianceType);
         })
         return list;
       })
     );
   }
+
+  getAppliances(): Observable<Appliance[]> {
+    return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/products?categoryCode=${this.regData.applianceTypeCode}`).pipe(
+      map(x => {
+        console.log(x);
+        let list = [] as Appliance[];
+        console.log(x.result);
+        x.result.forEach(y => {
+          let appliance = {} as Appliance;
+          appliance.text = y.applianceName;
+          list.push(appliance);
+        })
+        return list;
+      })
+    );;
+  }
 }
 
 export class RegistrationData {
   applianceType: string;
+  applianceTypeCode: string;
   appliance: string;
   registrationCode: string;
   modelNumber: string;

@@ -47,6 +47,7 @@ export class ApplianceContainer {
 
   constructor(private registrationService: RegistrationService, private router: Router) {
     this.appliances$ = of(this.testAppliances);
+    this.appliances$ = this.registrationService.getAppliances();
   }
 
   applianceClicked(appliance: Appliance) {

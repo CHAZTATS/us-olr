@@ -13,50 +13,16 @@ import { ApplianceTypeComponent } from './appliance-type.component';
 })
 export class ApplianceTypeContainer {
 
-  testApplianceTypes: ApplianceType[] = [
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    },
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    },
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    },
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    },
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    },
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    },
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    },
-    {
-      icon: 'mug-saucer',
-      text: 'Ovens and Cookers'
-    }
-  ]
-
   applianceTypes$: Observable<ApplianceType[]>;
 
   constructor(private registrationService: RegistrationService, private router: Router, private route: ActivatedRoute) {
     // this.applianceTypes$ = of(this.testApplianceTypes)
-    this.applianceTypes$ = registrationService.getAppliances();
+    this.applianceTypes$ = registrationService.getApplianceCategories();
   }
 
   applianceTypeClicked(applianceType: ApplianceType) {
     this.registrationService.regData.applianceType = applianceType.text;
+    this.registrationService.regData.applianceTypeCode = applianceType.code;
     this.router.navigateByUrl('appliance');
   }
 
@@ -65,4 +31,5 @@ export class ApplianceTypeContainer {
 export interface ApplianceType {
   icon: string;
   text: string;
+  code: string;
 }

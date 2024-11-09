@@ -1,5 +1,5 @@
 export const environment = {
-    name: 'Dev',
+    name: 'Local',
     brand: 'Whirlpool',
     production: false,
     requestAction: 'OLR',

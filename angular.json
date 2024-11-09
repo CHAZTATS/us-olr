@@ -59,6 +59,12 @@
                   "input": "public/assets/whirlpool"
                 }
               ],
+              "fileReplacements": [
+                {
+                  "replace": "environment/environment.ts",
+                  "with": "environment/dev/whirlpool.ts"
+                }
+              ],
               "styles": [
                 "src/styles.scss",
                 "src/themes/whirlpool.scss"
@@ -73,6 +79,12 @@
                 {
                   "glob": "**/*",
                   "input": "public/assets/amana"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "environment/environment.ts",
+                  "with": "environment/dev/amana.ts"
                 }
               ],
               "styles": [

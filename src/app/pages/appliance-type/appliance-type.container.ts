@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { RegistrationService } from '../../core/services/registration.service';
 import { ApplianceTypeComponent } from './appliance-type.component';
 
@@ -51,7 +51,8 @@ export class ApplianceTypeContainer {
   applianceTypes$: Observable<ApplianceType[]>;
 
   constructor(private registrationService: RegistrationService, private router: Router, private route: ActivatedRoute) {
-    this.applianceTypes$ = of(this.testApplianceTypes)
+    // this.applianceTypes$ = of(this.testApplianceTypes)
+    this.applianceTypes$ = registrationService.getAppliances();
   }
 
   applianceTypeClicked(applianceType: ApplianceType) {

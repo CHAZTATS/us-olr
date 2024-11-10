@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NavigationContainer } from './core/components/navigation/navigation.container';
+import { entryGuard } from './core/guards/entry.guard';
 import { ApplianceTypeContainer } from './pages/appliance-type/appliance-type.container';
 import { ApplianceContainer } from './pages/appliance/appliance.container';
 import { ArrivalDateContainer } from './pages/arrival-date/arrival-date.container';
@@ -27,39 +28,48 @@ export const routes: Routes = [
             },
             {
                 path: 'appliance',
-                component: ApplianceContainer
+                component: ApplianceContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'have-registration-code',
-                component: HaveRegistrationCodeContainer
+                component: HaveRegistrationCodeContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'registration-code',
-                component: RegistrationCodeContainer
+                component: RegistrationCodeContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'model-serial-number',
-                component: ModelSerialNumberContainer
+                component: ModelSerialNumberContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'cost',
-                component: CostContainer
+                component: CostContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'arrival-date',
-                component: ArrivalDateContainer
+                component: ArrivalDateContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'service-plan',
-                component: ServicePlanContainer
+                component: ServicePlanContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'planning-purchase',
-                component: PlanningPurchaseContainer
+                component: PlanningPurchaseContainer,
+                canActivate: [entryGuard]
             },
             {
                 path: 'personal-details',
-                component: PersonalDetailsContainer
+                component: PersonalDetailsContainer,
+                canActivate: [entryGuard]
             }
         ]
     }

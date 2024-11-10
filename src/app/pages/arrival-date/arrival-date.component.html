@@ -1,7 +1,7 @@
 <app-page [title]="title" [subheader]="subheader">
     <form>
         <label for="cost">Price Paid</label>
-        <input type="date" id="date" [(ngModel)]="date" placeholder="$0.00">
+        <input type="date" id="date" name="date" [(ngModel)]="date" placeholder="$0.00">
     </form>
     <div class="actions">
         <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" [disabled]="!date"

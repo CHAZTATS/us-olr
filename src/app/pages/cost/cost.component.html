@@ -1,7 +1,7 @@
 <app-page [title]="title">
     <form>
         <label for="cost">Price Paid</label>
-        <input type="number" id="cost" [(ngModel)]="cost" placeholder="$0.00">
+        <input type="number" name="cost" id="cost" [(ngModel)]="cost" placeholder="$0.00">
     </form>
     <div class="actions">
         <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" [disabled]="!cost"
@@ -9,5 +9,4 @@
             <p>Continue</p>
         </app-text-button>
     </div>
-
 </app-page>

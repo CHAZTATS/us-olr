@@ -14,12 +14,9 @@ import { ApplianceTypeComponent } from './appliance-type.component';
 export class ApplianceTypeContainer {
 
   applianceTypes$: Observable<ApplianceType[]>;
-  msTest$: Observable<any>;
 
   constructor(private registrationService: RegistrationService, private router: Router, private route: ActivatedRoute) {
-    // this.applianceTypes$ = of(this.testApplianceTypes)
     this.applianceTypes$ = registrationService.getApplianceCategories();
-    this.msTest$ = registrationService.getModelAndSerialNumberFromRegistrationCode();
   }
 
   applianceTypeClicked(applianceType: ApplianceType) {

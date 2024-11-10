@@ -1,9 +1,11 @@
 <app-page-header [title]="'Register your appliance for proof of purchase and safety notifications'"></app-page-header>
-<div class="page">
-    <!-- step thing here -->
-    <app-page-title [title]="title"></app-page-title>
-    <app-page-subheader *ngIf="subheader">
-        {{subheader}}
-    </app-page-subheader>
-    <ng-content></ng-content>
+<div class="page-container">
+    <div class="page">
+        <!-- step thing here -->
+        <app-page-title [title]="title"></app-page-title>
+        <app-page-subheader *ngIf="subheader">
+            {{subheader}}
+        </app-page-subheader>
+        <ng-content></ng-content>
+    </div>
 </div>

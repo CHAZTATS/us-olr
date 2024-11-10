@@ -7,8 +7,16 @@
             <label for="serialNumber">Serial number</label>
             <input type="text" id="serialNumber" name="serialNumber" [(ngModel)]="serialNumber" required>
         </form>
+        <div id="iHaveARegistrationCode">
+            <a (click)="iHaveARegistraionCodeClicked()">
+                I have a registration code
+            </a>
+        </div>
     </app-panel>
     <div class="actions">
+        <a>
+            I don't have my model or serial number
+        </a>
         <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" color="primary"
             (click)="continueClicked()">
             <p>Continue</p>

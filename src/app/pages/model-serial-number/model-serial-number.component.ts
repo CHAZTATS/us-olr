@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageComponent } from "../../core/components/page/page.component";
 import { PanelComponent } from "../../shared/components/panel/panel.component";
@@ -13,6 +13,8 @@ import { TextButtonComponent } from "../../shared/components/text-button/text-bu
 })
 export class ModelSerialNumberComponent {
 
+  @Output() onIHaveARegistrationCodeClicked: EventEmitter<null> = new EventEmitter();
+
   title = 'Please provide your model and serial number';
   subheader = 'We need this to help provide you with a better warranty service if you ever need a repair.';
 
@@ -22,5 +24,9 @@ export class ModelSerialNumberComponent {
   continueClicked() {
     console.log(this.modelNumber);
     console.log(this.serialNumber);
+  }
+
+  iHaveARegistraionCodeClicked() {
+    this.onIHaveARegistrationCodeClicked.emit();
   }
 }

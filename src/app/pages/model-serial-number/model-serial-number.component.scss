@@ -27,4 +27,38 @@ app-panel {
         border: 1px solid var(--Dark-grey, #222);
         box-sizing: border-box;
     }
+
+    #iHaveARegistrationCode {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+    }
+}
+
+a {
+    color: var(--Whirlpool-Dark-Grey, var(--Dark-grey, #222));
+    font-family: "Helvetica";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    text-decoration-line: underline;
+    margin: 0;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 24px;
+
+    a {
+        margin-top: 20px;
+        margin-bottom: 46px;
+    }
 }

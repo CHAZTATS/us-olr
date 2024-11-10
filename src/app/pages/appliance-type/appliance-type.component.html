@@ -1,4 +1,7 @@
 <app-page [title]="title">
+
+    {{msTest | json}}
+
     <div class="buttons">
         @for (applianceType of applianceTypes; track $index) {
         <app-icon-button [icon]="applianceType.icon" [text]="applianceType.text"

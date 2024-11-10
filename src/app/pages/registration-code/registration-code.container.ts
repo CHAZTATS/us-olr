@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegistrationService } from '../../core/services/registration.service';
+import { ModelSerialResponse, RegistrationService } from '../../core/services/registration.service';
 import { RegistrationCodeComponent } from './registration-code.component';
 
 @Component({
@@ -11,12 +11,33 @@ import { RegistrationCodeComponent } from './registration-code.component';
 })
 export class RegistrationCodeContainer {
 
+  hasSubtmitBeenClicked = false;
+  isValidRegCode = false;
+  modelSerialResponse: ModelSerialResponse;
+
   constructor(private registrationService: RegistrationService, private router: Router) { }
 
   submitClicked(registrationCode: string) {
-    this.registrationService.regData.registrationCode = registrationCode;
-    console.log(this.registrationService.regData);
+    this.hasSubtmitBeenClicked = true;
+    this.registrationService.getModelAndSerialNumberFromRegistrationCode(registrationCode).subscribe(
+      x => {
+        if (x.length > 0) {
+          this.isValidRegCode = true;
+          this.modelSerialResponse = x[0];
+        } else {
+          this.hasSubtmitBeenClicked = false;
+        }
+      }
+    );
+    // this.router.navigateByUrl('cost');
+  }
+
+  continueClicked() {
     this.router.navigateByUrl('cost');
+  }
+
+  iDontHaveARegistrationCodeClicked() {
+    this.router.navigateByUrl('model-serial-number')
   }
 
 }

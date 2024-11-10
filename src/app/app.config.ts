@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaModule, RecaptchaV3Module } from 'ng-recaptcha';
-import { environment } from '../../environment/environment';
+import { environment } from '../../config/environment/environment';
 import { routes } from './app.routes';
 import { RecaptchaService } from './core/interceptors/recaptcha.service';
 

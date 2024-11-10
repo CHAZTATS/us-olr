@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { brand } from '../../../../../config/brand/brand';
+import { environment } from '../../../../../config/environment/environment';
 
 @Component({
   selector: 'app-footer',
@@ -8,5 +10,8 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
+
+  env = environment.name;
+  brand = brand.name;
 
 }

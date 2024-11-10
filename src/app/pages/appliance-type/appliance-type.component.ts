@@ -14,6 +14,7 @@ import { ApplianceType } from './appliance-type.container';
 export class ApplianceTypeComponent {
 
   @Input() applianceTypes: ApplianceType[];
+  @Input() msTest: any;
   @Output() onApplianceTypeClicked: EventEmitter<ApplianceType> = new EventEmitter();
 
   title: string = 'What type of appliance are you registering?';

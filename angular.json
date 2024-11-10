@@ -28,27 +28,14 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
+            "development-whirlpool": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
-            },
-            "whirlpool": {
+              "sourceMap": true,
+              "styles": [
+                "src/styles.scss",
+                "src/themes/whirlpool.scss"
+              ],
               "assets": [
                 {
                   "glob": "*",
@@ -61,16 +48,103 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "environment/environment.ts",
-                  "with": "environment/dev/whirlpool.ts"
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/whirlpool.ts"
                 }
-              ],
+              ]
+            },
+            "test-whirlpool": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
               "styles": [
                 "src/styles.scss",
                 "src/themes/whirlpool.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/whirlpool"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/whirlpool.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.test.ts"
+                }
               ]
             },
-            "amana": {
+            "staging-whirlpool": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "styles": [
+                "src/styles.scss",
+                "src/themes/whirlpool.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/whirlpool"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/whirlpool.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.stag.ts"
+                }
+              ]
+            },
+            "production-whirlpool": {
+              "styles": [
+                "src/styles.scss",
+                "src/themes/whirlpool.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/whirlpool"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/whirlpool.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.prod.ts"
+                }
+              ]
+            },
+            "development-amana": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "styles": [
+                "src/styles.scss",
+                "src/themes/amana.scss"
+              ],
               "assets": [
                 {
                   "glob": "*",
@@ -83,35 +157,127 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "environment/environment.ts",
-                  "with": "environment/dev/amana.ts"
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/amana.ts"
                 }
-              ],
+              ]
+            },
+            "test-amana": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
               "styles": [
                 "src/styles.scss",
                 "src/themes/amana.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/amana"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/amana.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.test.ts"
+                }
+              ]
+            },
+            "staging-amana": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "styles": [
+                "src/styles.scss",
+                "src/themes/amana.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/amana"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/amana.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.stag.ts"
+                }
+              ]
+            },
+            "production-amana": {
+              "styles": [
+                "src/styles.scss",
+                "src/themes/amana.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/amana"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/amana.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.prod.ts"
+                }
               ]
             }
           },
-          "defaultConfiguration": "development,whirlpool"
+          "defaultConfiguration": "development-whirlpool"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "us-olr:build:production"
+            "development-whirlpool": {
+              "buildTarget": "us-olr:build:development-whirlpool"
             },
-            "development": {
-              "buildTarget": "us-olr:build:development"
+            "test-whirlpool": {
+              "buildTarget": "us-olr:build:test-whirlpool"
             },
-            "whirlpool": {
-              "buildTarget": "us-olr:build:whirlpool"
+            "staging-whirlpool": {
+              "buildTarget": "us-olr:build:staging-whirlpool"
             },
-            "amana": {
-              "buildTarget": "us-olr:build:amana"
+            "production-whirlpool": {
+              "buildTarget": "us-olr:build:production-whirlpool"
+            },
+            "development-amana": {
+              "buildTarget": "us-olr:build:development-amana"
+            },
+            "test-amana": {
+              "buildTarget": "us-olr:build:test-amana"
+            },
+            "staging-amana": {
+              "buildTarget": "us-olr:build:staging-amana"
+            },
+            "production-amana": {
+              "buildTarget": "us-olr:build:production-amana"
             }
           },
-          "defaultConfiguration": "development,whirlpool"
+          "defaultConfiguration": "development-whirlpool"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

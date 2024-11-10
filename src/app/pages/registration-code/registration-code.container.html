@@ -1,1 +1,3 @@
-<app-registration-code (onSubmitClicked)="submitClicked($event)"></app-registration-code>
+<app-registration-code (onSubmitClicked)="submitClicked($event)" (onContinueClicked)="continueClicked()"
+    (onIDontHaveARegistrationCodeClicked)="iDontHaveARegistrationCodeClicked()"
+    [modelSerialNumberResponse]="modelSerialResponse"></app-registration-code>

@@ -1,1 +1,17 @@
-<p>model-serial-number works!</p>
+<app-page [title]="title" [subheader]="subheader">
+    <app-panel>
+        <form>
+            <label for="modelNumber">Search for your model number</label>
+            <input type="text" id="modelNumber" name="modelNumber" [(ngModel)]="modelNumber" required
+                [placeholder]="'Start typing to select...'">
+            <label for="serialNumber">Serial number</label>
+            <input type="text" id="serialNumber" name="serialNumber" [(ngModel)]="serialNumber" required>
+        </form>
+    </app-panel>
+    <div class="actions">
+        <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" color="primary"
+            (click)="continueClicked()">
+            <p>Continue</p>
+        </app-text-button>
+    </div>
+</app-page>

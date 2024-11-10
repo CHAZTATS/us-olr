@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../../../environment/environment';
+import { brand } from '../../../../config/brand/brand';
 import { ApplianceType } from '../../pages/appliance-type/appliance-type.container';
 import { Appliance } from '../../pages/appliance/appliance.container';
 
@@ -10,8 +10,9 @@ import { Appliance } from '../../pages/appliance/appliance.container';
 })
 export class RegistrationService {
 
-  CATALOGUE_API = 'https://api.catalogue.common.use1.test.test.domgenusa-test.cloud/v1'
-  BRAND = environment.brand;
+  CATALOGUE_API = 'https://api.catalogue.common.use1.test.test.domgenusa-test.cloud/v1';
+  MODEL_SERIAL_API = 'https://api.aws.preprod.domgen-usa.com/v1';
+  BRAND = brand.name;
   regData: RegistrationData;
 
   constructor(private http: HttpClient) {
@@ -50,7 +51,16 @@ export class RegistrationService {
         })
         return list;
       })
-    );;
+    );
+  }
+
+  validateModelAndSerialNumber(modelNumber?: string, serialNumber?: string) {
+    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?model=1CWTW4705GW&serial=CA0800839&client=${brand.modelSerialAPIBrandCode}`);
+  }
+
+  getModelAndSerialNumberFromRegistrationCode(registrationCode?: string) {
+    //782A31DTJ
+    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?client=${brand.modelSerialAPIBrandCode}&registrationCode=${registrationCode}`);
   }
 }
 
@@ -81,4 +91,23 @@ export interface CategoryDTO {
 export interface CatalogueAPIResponse {
   status: string;
   result: any[];
+}
+
+export interface ModelSerialResponse {
+  Client_Code: string;
+  Brand_Code: string;
+  Item_Type_Code: string;
+  Default_Guarantee_Period_Parts: number;
+  Model_Number: string;
+  Serial_Number: string;
+  Country__c: string;
+  Client__c: string;
+  Serialization_Provider: string;
+  Serialization_Code: string;
+  Model_Reference: string;
+  Brand: string;
+  Type: string;
+  Default_Guarantee_Period_Labor: number;
+  LoadDate: Date;
+  LoadFilename: string;
 }

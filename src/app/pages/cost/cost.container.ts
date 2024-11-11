@@ -11,8 +11,14 @@ import { CostComponent } from './cost.component';
 })
 export class CostContainer {
 
+  cost: number;
+
   constructor(private registrationService: RegistrationService, private router: Router) {
 
+  }
+
+  ngOnInit() {
+    this.cost = this.registrationService.regData.price;
   }
 
   continueClicked(cost: number) {

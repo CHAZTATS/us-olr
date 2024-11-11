@@ -245,6 +245,115 @@
                   "with": "config/environment/environment.prod.ts"
                 }
               ]
+            },
+            "development-maytag": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "styles": [
+                "src/styles.scss",
+                "src/themes/maytag.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/maytag"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/maytag.ts"
+                }
+              ]
+            },
+            "test-maytag": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "styles": [
+                "src/styles.scss",
+                "src/themes/maytag.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/maytag"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/maytag.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.test.ts"
+                }
+              ]
+            },
+            "staging-maytag": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "styles": [
+                "src/styles.scss",
+                "src/themes/maytag.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/maytag"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/maytag.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.stag.ts"
+                }
+              ]
+            },
+            "production-maytag": {
+              "styles": [
+                "src/styles.scss",
+                "src/themes/maytag.scss"
+              ],
+              "assets": [
+                {
+                  "glob": "*",
+                  "input": "public/assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/assets/maytag"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "config/brand/brand.ts",
+                  "with": "config/brand/maytag.ts"
+                },
+                {
+                  "replace": "config/environment/environment.ts",
+                  "with": "config/environment/environment.prod.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "development-whirlpool"
@@ -275,6 +384,18 @@
             },
             "production-amana": {
               "buildTarget": "us-olr:build:production-amana"
+            },
+            "development-maytag": {
+              "buildTarget": "us-olr:build:development-maytag"
+            },
+            "test-maytag": {
+              "buildTarget": "us-olr:build:test-maytag"
+            },
+            "staging-maytag": {
+              "buildTarget": "us-olr:build:staging-maytag"
+            },
+            "production-maytag": {
+              "buildTarget": "us-olr:build:production-maytag"
             }
           },
           "defaultConfiguration": "development-whirlpool"

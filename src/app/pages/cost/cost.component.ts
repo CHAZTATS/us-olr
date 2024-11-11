@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageComponent } from "../../core/components/page/page.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
@@ -13,8 +13,8 @@ import { TextButtonComponent } from "../../shared/components/text-button/text-bu
 export class CostComponent {
 
   title = 'How much did your appliance cost?';
-  cost: number;
 
+  @Input() cost: number;
   @Output() onContinueClicked: EventEmitter<number> = new EventEmitter();
 
   continueClicked() {

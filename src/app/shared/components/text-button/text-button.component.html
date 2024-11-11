@@ -1,4 +1,4 @@
 <button class="button" [class]="color" [style.width.px]='width' [style.height.px]='height' [style.padding]='padding'
-    [style.font-size.px]='fontSize ? fontSize : 16' [disabled]="disabled">
+    [style.font-size.px]='fontSize ? fontSize : 16' [ngClass]="{ 'max-width': fillWidth }" [disabled]="disabled">
     <ng-content></ng-content>
 </button>

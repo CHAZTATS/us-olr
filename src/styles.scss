@@ -9,3 +9,15 @@ body {
     margin: 0;
     width: 100%;
 }
+
+@keyframes slide-in {
+    from {
+        transform: translateX(1000px);
+    }
+}
+
+::view-transition-old(router-outlet),
+::view-transition-new(router-outlet) {
+    animation-duration: 1000ms;
+    animation-name: slide-in;
+}

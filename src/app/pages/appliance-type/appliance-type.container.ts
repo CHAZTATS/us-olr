@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RegistrationService } from '../../core/services/registration.service';
 import { ApplianceTypeComponent } from './appliance-type.component';
@@ -15,13 +15,16 @@ export class ApplianceTypeContainer {
 
   applianceTypes$: Observable<ApplianceType[]>;
 
-  constructor(private registrationService: RegistrationService, private router: Router, private route: ActivatedRoute) {
+  constructor(private registrationService: RegistrationService, private router: Router) {
     this.applianceTypes$ = registrationService.getApplianceCategories();
   }
 
   applianceTypeClicked(applianceType: ApplianceType) {
-    this.registrationService.regData.applianceType = applianceType.text;
-    this.registrationService.regData.applianceTypeCode = applianceType.code;
+    if (this.registrationService.regData.applianceType !== applianceType.text) {
+      this.registrationService.regData.applianceType = applianceType.text;
+      this.registrationService.regData.applianceTypeCode = applianceType.code;
+      this.registrationService.appliances = [];
+    }
     this.router.navigateByUrl('appliance');
   }
 

@@ -55,10 +55,20 @@ a {
     justify-content: center;
     align-items: center;
 
-    margin-top: 24px;
-
     a {
-        margin-top: 20px;
-        margin-bottom: 46px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .error-helper {
+        display: flex;
+        padding: 12px 16px;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        gap: 8px;
+        align-self: stretch;
+        border-radius: 4px;
+        border: 1px solid #f9b6b6;
+        background: #ffebeb;
     }
 }

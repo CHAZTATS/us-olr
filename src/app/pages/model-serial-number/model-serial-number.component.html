@@ -14,9 +14,14 @@
         </div>
     </app-panel>
     <div class="actions">
-        <a>
+        <a (click)="showErrorHelper = !showErrorHelper">
             I don't have my model or serial number
         </a>
+        @if(showErrorHelper){
+        <div class="error-helper">
+            Come back when you have your product information”, or “call us at 1-800-d&g”
+        </div>
+        }
         <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" color="primary"
             (click)="continueClicked()">
             <p>Continue</p>

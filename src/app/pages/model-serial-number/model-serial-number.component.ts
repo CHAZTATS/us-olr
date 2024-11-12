@@ -18,6 +18,8 @@ export class ModelSerialNumberComponent {
   title = 'Please provide your model and serial number';
   subheader = 'We need this to help provide you with a better warranty service if you ever need a repair.';
 
+  showErrorHelper = false;
+
   modelNumber: string = '';
   serialNumber: string = '';
 

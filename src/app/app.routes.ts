@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { brand } from '../../config/brand/brand';
 import { NavigationContainer } from './core/components/navigation/navigation.container';
 import { entryGuard } from './core/guards/entry.guard';
 import { ApplianceTypeContainer } from './pages/appliance-type/appliance-type.container';
@@ -16,6 +17,7 @@ export const routes: Routes = [
     {
         path: '',
         component: NavigationContainer,
+        title: `${brand.name} - Registration`,
         children: [
             {
                 path: '',
@@ -24,7 +26,7 @@ export const routes: Routes = [
             },
             {
                 path: 'appliance-type',
-                component: ApplianceTypeContainer
+                component: ApplianceTypeContainer,
             },
             {
                 path: 'appliance',

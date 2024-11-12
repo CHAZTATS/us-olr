@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { brand } from '../../../../config/brand/brand';
 import { ApplianceType } from '../../pages/appliance-type/appliance-type.container';
 import { Appliance } from '../../pages/appliance/appliance.container';
@@ -15,47 +15,54 @@ export class RegistrationService {
   BRAND = brand.name;
   regData: RegistrationData;
 
+  applianceTypes: ApplianceType[] = [];
+  appliances: Appliance[] = [];
+
   constructor(private http: HttpClient) {
     this.regData = new RegistrationData();
   }
 
   getApplianceCategories(): Observable<ApplianceType[]> {
-    return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/categories`).pipe(
-      map(x => {
-        console.log(x);
-        let list = [] as ApplianceType[];
-        console.log(x.result);
-        x.result.forEach(y => {
-          let applianceType = {} as ApplianceType;
-          applianceType.icon = y.icon;
-          applianceType.icon = 'mug-saucer';
-          applianceType.text = y.categoryName;
-          applianceType.code = y.categoryCode;
-          list.push(applianceType);
+    if (this.applianceTypes.length < 1) {
+      return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/categories`).pipe(
+        map(x => {
+          x.result.forEach(y => {
+            let applianceType = {} as ApplianceType;
+            applianceType.icon = y.icon;
+            applianceType.icon = 'mug-saucer';
+            applianceType.text = y.categoryName;
+            applianceType.code = y.categoryCode;
+            this.applianceTypes.push(applianceType);
+          })
+          return this.applianceTypes;
         })
-        return list;
-      })
-    );
+      );
+    } else {
+      return of(this.applianceTypes);
+    }
+
   }
 
   getAppliances(): Observable<Appliance[]> {
-    return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/products?categoryCode=${this.regData.applianceTypeCode}`).pipe(
-      map(x => {
-        console.log(x);
-        let list = [] as Appliance[];
-        console.log(x.result);
-        x.result.forEach(y => {
-          let appliance = {} as Appliance;
-          appliance.text = y.applianceName;
-          list.push(appliance);
+    if (this.appliances.length < 1) {
+      return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/products?categoryCode=${this.regData.applianceTypeCode}`).pipe(
+        map(x => {
+          x.result.forEach(y => {
+            let appliance = {} as Appliance;
+            appliance.text = y.applianceName;
+            this.appliances.push(appliance);
+          })
+          return this.appliances;
         })
-        return list;
-      })
-    );
+      );
+    } else {
+      return of(this.appliances);
+    }
+
   }
 
   validateModelAndSerialNumber(modelNumber?: string, serialNumber?: string) {
-    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?model=1CWTW4705GW&serial=CA0800839&client=${brand.modelSerialAPIBrandCode}`);
+    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?model=${modelNumber}&serial=${serialNumber}&client=${brand.modelSerialAPIBrandCode}`);
   }
 
   getModelAndSerialNumberFromRegistrationCode(registrationCode?: string) {

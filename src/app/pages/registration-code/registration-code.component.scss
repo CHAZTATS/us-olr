@@ -86,3 +86,22 @@ app-panel {
         text-align: right;
     }
 }
+
+.reg-helper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #000;
+    text-align: center;
+    font-family: "Helvetica";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%; /* 20px */
+
+    img {
+        height: 431px;
+        width: 335px;
+    }
+}

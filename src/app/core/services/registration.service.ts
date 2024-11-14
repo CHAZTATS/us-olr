@@ -12,7 +12,7 @@ export class RegistrationService {
 
   CATALOGUE_API = 'https://api.catalogue.common.use1.test.test.domgenusa-test.cloud/v1';
   MODEL_SERIAL_API = 'https://api.aws.preprod.domgen-usa.com/v1';
-  BRAND = brand.name;
+  BRAND = brand;
   regData: RegistrationData;
 
   applianceTypes: ApplianceType[] = [];
@@ -24,7 +24,7 @@ export class RegistrationService {
 
   getApplianceCategories(): Observable<ApplianceType[]> {
     if (this.applianceTypes.length < 1) {
-      return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/categories`).pipe(
+      return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND.categoriesAPIBrandCode}/categories`).pipe(
         map(x => {
           x.result.forEach(y => {
             let applianceType = {} as ApplianceType;
@@ -45,7 +45,7 @@ export class RegistrationService {
 
   getAppliances(): Observable<Appliance[]> {
     if (this.appliances.length < 1) {
-      return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND}/products?categoryCode=${this.regData.applianceTypeCode}`).pipe(
+      return this.http.get<CatalogueAPIResponse>(`${this.CATALOGUE_API}/brands/${this.BRAND.categoriesAPIBrandCode}/products?categoryCode=${this.regData.applianceTypeCode}`).pipe(
         map(x => {
           x.result.forEach(y => {
             let appliance = {} as Appliance;

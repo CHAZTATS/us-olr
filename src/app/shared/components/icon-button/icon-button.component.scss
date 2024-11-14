@@ -15,8 +15,8 @@
     /* Light drop shad1 */
     box-shadow: 3px 3px 10px 0px rgba(40, 1, 123, 0.1);
 
-    fa-icon {
-        height: 32px;
+    i {
+        font-size: 32px;
         flex-shrink: 0;
         color: var(--primary);
     }

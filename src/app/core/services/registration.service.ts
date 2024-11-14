@@ -29,7 +29,7 @@ export class RegistrationService {
           x.result.forEach(y => {
             let applianceType = {} as ApplianceType;
             applianceType.icon = y.icon;
-            applianceType.icon = 'mug-saucer';
+            // applianceType.icon = 'mug-saucer';
             applianceType.text = y.categoryName;
             applianceType.code = y.categoryCode;
             this.applianceTypes.push(applianceType);

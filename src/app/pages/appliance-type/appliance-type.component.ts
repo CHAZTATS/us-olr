@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageComponent } from '../../core/components/page/page.component';
 import { IconButtonComponent } from "../../shared/components/icon-button/icon-button.component";
@@ -7,7 +6,7 @@ import { ApplianceType } from './appliance-type.container';
 @Component({
   selector: 'app-appliance-type',
   standalone: true,
-  imports: [PageComponent, IconButtonComponent, JsonPipe],
+  imports: [PageComponent, IconButtonComponent],
   templateUrl: './appliance-type.component.html',
   styleUrl: './appliance-type.component.scss'
 })

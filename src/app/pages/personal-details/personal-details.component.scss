@@ -61,7 +61,7 @@ app-panel {
         cursor: pointer;
 
         &.active {
-            border-top: 4px solid var(--Whirlpool-gold, #eeb111);
+            border-top: 4px solid var(--primary);
             background: var(--Whirlpool-Light-Grey, #f2f2f2);
         }
     }

@@ -1,7 +1,10 @@
+@if(showBanner) {
 <app-page-header [title]="'Register your appliance for proof of purchase and safety notifications'"></app-page-header>
+}
 <div class="page-container">
     <div class="page">
         <!-- step thing here -->
+        <ng-content select=".info"></ng-content>
         <app-page-title [title]="title"></app-page-title>
         <app-page-subheader *ngIf="subheader">
             {{subheader}}

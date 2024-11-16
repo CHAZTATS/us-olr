@@ -10,6 +10,7 @@ import { HaveRegistrationCodeContainer } from './pages/have-registration-code/ha
 import { ModelSerialNumberContainer } from './pages/model-serial-number/model-serial-number.container';
 import { PersonalDetailsContainer } from './pages/personal-details/personal-details.container';
 import { PlanningPurchaseContainer } from './pages/planning-purchase/planning-purchase.container';
+import { ProtectionDetailsContainer } from './pages/protection-details/protection-details.container';
 import { RegistrationCodeContainer } from './pages/registration-code/registration-code.container';
 import { ServicePlanContainer } from './pages/service-plan/service-plan.container';
 
@@ -72,6 +73,11 @@ export const routes: Routes = [
                 path: 'personal-details',
                 component: PersonalDetailsContainer,
                 canActivate: [entryGuard]
+            },
+            {
+                path: 'protection-details',
+                component: ProtectionDetailsContainer,
+                canActivate: []
             }
         ]
     }

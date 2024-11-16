@@ -1,0 +1,82 @@
+app-page-title {
+    p {
+        text-align: left !important;
+    }
+}
+
+.info {
+    display: flex;
+    padding: 12px 16px;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 4px;
+    border: 1px solid var(--DG-Acc-1-300, #d9c3ff);
+    background: var(--DG-Acc-1-200, #f8f3ff);
+    color: var(--DG-Greys-800-body-text-col, #4f5061);
+    font-family: "Helvetica";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 22.4px */
+    margin-top: 24px;
+}
+
+.text {
+    color: var(--Whirlpool-Dark-Grey, var(--Dark-grey, #222));
+    font-family: "Helvetica";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+
+.add-text {
+    color: var(--Whirlpool-Dark-Grey, var(--Dark-grey, #222));
+    text-align: center;
+    font-family: "Helvetica";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%; /* 25px */
+    letter-spacing: 0.1px;
+    margin-top: 16px;
+}
+
+.provided-by {
+    margin-top: 16px;
+    color: var(--Whirlpool-Dark-Grey, var(--Dark-grey, #222));
+    text-align: center;
+
+    /* DG TYPE/SHARED/Body Styles/Body */
+    font-family: "Helvetica";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+
+.benefits-panel {
+    display: flex;
+    padding: 24px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 45px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Whirlpool-Light-Grey, #f2f2f2);
+}
+
+.terms-and-conditions {
+    display: flex;
+    padding: 24px 12px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--DG-Primary-100, #f4faff);
+}
+
+.add-and-cancel {
+}

@@ -7,7 +7,48 @@
         <label for="lastName">Last name*</label>
         <input type="text" name="lastName" id="lastName" [(ngModel)]="lastName" required>
         <div class="address">
-            ADDRESS SHIT HERE
+            <div class="tabs">
+                <div class="tab-selector" [ngClass]="{ 'active': !manualAddress }" (click)="findAddressClicked()">
+                    Find address
+                </div>
+                <div class="tab-selector" [ngClass]="{ 'active': manualAddress }" (click)="manualAddress = true">
+                    Manual address
+                </div>
+            </div>
+            @if(!manualAddress) {
+            <app-panel>
+                <form>
+                    <label for="addressSearchInput" class="bold">Search for your address</label>
+                    <div id="addressSearchInputAndSelector">
+                        <input id="addressSearchInput" type="text" [formControl]="addressSearch"
+                            [placeholder]="'Start typing your address or postcode'">
+                        @if(addresses && !isAddressSelected) {
+                        <div class="address-select">
+                            @for (address of addresses; track address.Id) {
+                            <div class="address-option" (click)="addressSelected(address.Id)">
+                                {{address.Text}},{{address.Description}}</div>
+                            }
+                        </div>
+                        }
+                    </div>
+                </form>
+            </app-panel>
+            } @else {
+            <app-panel>
+                <form>
+                    <label for="addressLine1" class="bold">Address Line 1*</label>
+                    <input type="text" name="addressLine1" id="addressLine1" [(ngModel)]="addressLine1" required>
+                    <label for="addressLine2" class="bold">Address Line 2</label>
+                    <input type="text" name="addressLine2" id="addressLine2" [(ngModel)]="addressLine2">
+                    <label for="towncity" class="bold">Town/City</label>
+                    <input type="text" name="towncity" id="towncity" [(ngModel)]="towncity">
+                    <label for="state" class="bold">State</label>
+                    <input type="text" name="state" id="state" [(ngModel)]="state" requied>
+                    <label for="zipcode" class="bold">Zip Code*</label>
+                    <input type="text" name="zipcode" id="zipcode" [(ngModel)]="zipcode" required>
+                </form>
+            </app-panel>
+            }
         </div>
         <label for="email">Email Address*</label>
         <input type="text" name="email" id="email" [(ngModel)]="email" required>

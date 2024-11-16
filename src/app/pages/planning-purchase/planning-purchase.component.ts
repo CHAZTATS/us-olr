@@ -29,8 +29,9 @@ export class PlanningPurchaseComponent {
 
   title = 'Are you planning to purchase any of these appliances in the next 12 months?';
 
-  onChange(checked: boolean, appliance: string) {
-    if (checked) {
+  onChange(event: Event, appliance: string) {
+    const target = event.target as HTMLInputElement
+    if (target.checked) {
       this.selectedAppliances.push(appliance);
     } else {
       this.selectedAppliances = this.selectedAppliances.filter(x => x != appliance);

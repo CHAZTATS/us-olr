@@ -1,5 +1,5 @@
 export const brand = {
     name: 'Whirlpool',
-    categoriesAPIBrandCode: 'Whirl',
+    categoriesAPIBrandCode: 'WHIRL',
     modelSerialAPIBrandCode: 'WHIRL'
 };

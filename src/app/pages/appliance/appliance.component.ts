@@ -16,6 +16,7 @@ export class ApplianceComponent {
   @Output() onApplianceClicked: EventEmitter<Appliance> = new EventEmitter();
 
   title: string = 'Can you tell us what the appliance is?';
+  subheader: string = 'Pick the one that seems most correct.'
 
   applianceClicked(appliance: Appliance) {
     this.onApplianceClicked.emit(appliance);

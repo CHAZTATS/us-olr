@@ -2,7 +2,7 @@
     <div class="checkboxes">
         @for (appliance of appliances; track $index) {
         <div class="checkbox">
-            <input type="checkbox" (change)="onChange($event.target.checked, appliance)">
+            <input type="checkbox" (change)="onChange($event, appliance)">
             <label>{{appliance}}</label>
         </div>
         }

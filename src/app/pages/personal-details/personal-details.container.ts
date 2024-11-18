@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { Address, AddressyAddress, RegistrationService } from '../../core/services/registration.service';
 import { PersonalDetailsComponent } from './personal-details.component';
@@ -33,14 +34,21 @@ export class PersonalDetailsContainer {
       map(x => {
         console.log(x);
         let address = {} as Address;
-        address.addressLine1 = x.Line1;
-        address.addressLine2 = x.Line2;
+        address.line1 = x.Line1;
+        address.line2 = x.Line2;
         address.state = x.Province;
-        address.towncity = x.City;
-        address.zipcode = x.PostalCode;
+        address.city = x.City;
+        address.postalCode = x.PostalCode;
         return address;
       })
     );
+  }
+
+  continueClicked(personalDetailsFormGroup: FormGroup) {
+    this.registrationService.regData.customer = personalDetailsFormGroup.getRawValue();
+    this.registrationService.getQuote().subscribe(x => {
+      console.log(x);
+    })
   }
 
 }

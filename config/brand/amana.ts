@@ -1,5 +1,5 @@
 export const brand = {
     name: 'Amana',
-    categoriesAPIBrandCode: 'Amana',
+    categoriesAPIBrandCode: 'AMANA',
     modelSerialAPIBrandCode: 'AMANA'
 };

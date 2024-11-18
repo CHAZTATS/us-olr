@@ -1,3 +1,4 @@
 <app-personal-details [data]="data" (onAddressSearchChanged)="addressSearchChanged($event)"
     (onAddressSelected)="addressSelected($event)" [addresses]="(addresses$ | async)!"
-    [selectedAddress]="(selectedAddress$ | async)!"></app-personal-details>
+    [selectedAddress]="(selectedAddress$ | async)!"
+    (onContinueClicked)="continueClicked($event)"></app-personal-details>

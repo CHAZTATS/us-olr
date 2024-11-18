@@ -1,6 +1,6 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageComponent } from '../../core/components/page/page.component';
 import { Address, AddressyAddress } from '../../core/services/registration.service';
 import { PanelComponent } from "../../shared/components/panel/panel.component";
@@ -21,6 +21,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   @Input() selectedAddress: Address;
   @Output() onAddressSearchChanged: EventEmitter<string> = new EventEmitter();
   @Output() onAddressSelected: EventEmitter<string> = new EventEmitter();
+  @Output() onContinueClicked: EventEmitter<FormGroup> = new EventEmitter();
 
 
   title = 'Enter your details';
@@ -31,20 +32,23 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   addressSearch = new FormControl('');
   isAddressSelected = false;
 
-
-  firstName: string = '';
-  lastName: string = '';
-  email: string = '';
-  phone: string = '';
-
-  addressLine1: string = '';
-  addressLine2: string = '';
-  towncity: string = '';
-  state: string = '';
-  zipcode: string = '';
+  personalDetailsForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    billingAddress: new FormGroup({
+      line1: new FormControl(''),
+      line2: new FormControl(''),
+      city: new FormControl(''),
+      state: new FormControl(''),
+      postalCode: new FormControl(''),
+    })
+  });
 
   continueClicked() {
-
+    console.log(this.personalDetailsForm.getRawValue());
+    this.onContinueClicked.emit(this.personalDetailsForm);
   }
 
   addressSelected(addressId: string) {
@@ -63,11 +67,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedAddress'] && this.selectedAddress) {
-      this.addressLine1 = this.selectedAddress.addressLine1;
-      this.addressLine2 = this.selectedAddress.addressLine2;
-      this.towncity = this.selectedAddress.towncity;
-      this.state = this.selectedAddress.state;
-      this.zipcode = this.selectedAddress.zipcode;
+      this.personalDetailsForm.get('billingAddress')?.patchValue(this.selectedAddress);
     }
   }
 

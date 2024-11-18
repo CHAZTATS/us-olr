@@ -95,6 +95,104 @@ export class RegistrationService {
       })
       .pipe(map((result: { Items: SelectedAddressyAddress[] }) => result.Items[0]));
   }
+
+  getQuote() {
+    return this.http.post<any>(`${this.MODEL_SERIAL_API}/quote`, this.buildQuoteAPIRequest());
+  }
+
+  buildQuoteAPIRequest(): QuoteAPIRequest {
+    let request = new QuoteAPIRequest();
+    request.client = brand.name;
+    request.channel = 'Web';
+    request.system = 'Registria';
+    request.country = 'USA';
+    request.currency = 'USD';
+
+    let customer = {} as QuoteAPICustomer;
+
+    customer.firstName = this.regData.customer.firstName;
+    customer.lastName = this.regData.customer.lastName;
+    customer.email = this.regData.customer.email;
+
+    let phone = {} as QuoteAPIPhone;
+    phone.Home = this.regData.customer.phone;
+
+    customer.phone = phone;
+
+    let billingAddress = {} as QuoteAPIBillingAddress;
+
+    billingAddress.line1 = this.regData.customer.billingAddress.addressLine1;
+    billingAddress.line2 = this.regData.customer.billingAddress.addressLine2;
+    billingAddress.city = this.regData.customer.billingAddress.city;
+    billingAddress.state = this.regData.customer.billingAddress.state;
+    billingAddress.postalCode = this.regData.customer.billingAddress.postalCode;
+    billingAddress.country = 'USA';
+
+    customer.billingAddress = billingAddress;
+
+    request.customer = customer;
+
+    let merchandise = {} as Merchandise;
+
+    merchandise.type = this.regData.applianceType;
+    merchandise.merchandiseInGoodWorkingOrder = true;
+    merchandise.brand = this.BRAND.name;
+    merchandise.serialNumber = this.regData.serialNumber;
+    merchandise.modelNumber = this.regData.modelNumber;
+    merchandise.purchaseDate = this.regData.date;
+    merchandise.purchasePrice = this.regData.price;
+    merchandise.purchaseFrom = '';
+    merchandise.locatedAtMailingAddress = true;
+
+    request.merchandise.push(merchandise);
+
+    console.log(request);
+    return request;
+  }
+}
+
+export class QuoteAPIRequest {
+  // sessionId: string;
+  client: string;
+  channel: string;
+  system: string;
+  country: string;
+  currency: string;
+  customer: QuoteAPICustomer;
+  merchandise: Merchandise[] = [];
+}
+
+
+interface QuoteAPICustomer {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: QuoteAPIPhone;
+  billingAddress: QuoteAPIBillingAddress;
+}
+
+interface QuoteAPIPhone {
+  Home: string;
+}
+
+interface QuoteAPIBillingAddress {
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
+interface Merchandise {
+  type: string;
+  merchandiseInGoodWorkingOrder: boolean;
+  brand: string;
+  serialNumber: string;
+  modelNumber: string;
+  purchaseDate: string;
+  purchasePrice: number;
+  purchaseFrom: string;
+  locatedAtMailingAddress: boolean;
 }
 
 export class RegistrationData {
@@ -109,9 +207,28 @@ export class RegistrationData {
   didYouBuyAPlan: boolean;
   plannedPurchases: string[];
 
+  customer: RegistrationCustomer;
+
   constructor() {
 
   }
+}
+
+export interface RegistrationCustomer {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  billingAddress: Address;
+}
+
+export interface Address {
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: 'USA';
 }
 
 export interface CategoryDTO {

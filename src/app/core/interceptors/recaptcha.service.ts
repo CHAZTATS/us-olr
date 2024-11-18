@@ -8,6 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { filter, mergeMap, Observable } from 'rxjs';
+import { environment } from '../../../../config/environment/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,10 @@ export class RecaptchaService implements HttpInterceptor {
       mergeMap((token: string) => {
         let newHeaders = this.addAuthHeaders(req.headers, token);
         if (req.url.includes('serialization')) {
-          newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, 'HZRqLnZPGZ2QTgifn0Yw29ykai2g8f3h1bqh9E16');
+          newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.modelSerialAPIKey);
+        }
+        if (req.url.includes('quote') || req.url.includes('plan')) {
+          newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.quoteAPIKey);
         }
         const newReq = req.clone({ headers: newHeaders });
         return next.handle(newReq);

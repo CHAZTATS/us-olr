@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { PageComponent } from "../../core/components/page/page.component";
+import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
   selector: 'app-protection-details',
   standalone: true,
-  imports: [PageComponent],
+  imports: [PageComponent, TextButtonComponent],
   templateUrl: './protection-details.component.html',
   styleUrl: './protection-details.component.scss',
   encapsulation: ViewEncapsulation.None

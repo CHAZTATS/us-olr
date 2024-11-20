@@ -14,15 +14,61 @@
         Add Whirlpool Appliance Care for $XX a month—cancel anytime
     </div>
     <div class="provided-by">
-        Provided by Domestic & General
+        Provided by Domestic & General <img src="/dng.svg">
     </div>
     <div class="benefits-panel">
+        <p class="title">Get these benefits</p>
+
+        <div class="benefit">
+            <img src="/green-tick.svg">
+            <p>Immediate cover for accidental damage</p>
+            <i [class]="'fa-light fa-chevron-down'"></i>
+        </div>
+        <div class="benefit">
+            <img src="/green-tick.svg">
+            <p>Unlimited repairs - with no hidden costs</p>
+            <i [class]="'fa-light fa-chevron-down'"></i>
+        </div>
+        <div class="benefit">
+            <img src="/green-tick.svg">
+            <p>A replacement product if we can’t fix yours</p>
+            <i [class]="'fa-light fa-chevron-down'"></i>
+        </div>
+        <div class="benefit">
+            <img src="/green-tick.svg">
+            <p>Immediate cover for accessories</p>
+            <i [class]="'fa-light fa-chevron-down'"></i>
+        </div>
+        <div class="benefit">
+            <img src="/green-tick.svg">
+            <p>No fixed-term contract - cancel anytime</p>
+            <i [class]="'fa-light fa-chevron-down'"></i>
+        </div>
 
     </div>
     <div class="terms-and-conditions">
-
+        <i [class]="'fa-light fa-memo-circle-check'"></i>
+        <p>All repairs and replacements are subject to approval, in
+            line
+            with <a>Whirlpool Appliance Care terms and
+                conditions</a>.</p>
     </div>
     <div class="add-and-cancel">
-
+        <p class="bold">
+            Add Whirlpool Appliance Care
+        </p>
+        <p class="for">
+            for $xx.xx a month
+        </p>
+        <p id="cancel">Cancel anytime</p>
+    </div>
+    <div class="actions">
+        <app-text-button [height]="48" [width]="128" [padding]="'16px 20px'" [fontSize]="20" color="primary"
+            [fillWidth]="true">
+            <p>Register with extra cover</p>
+        </app-text-button>
+        <app-text-button [height]="48" [padding]="'16px 20px'" [fontSize]="20" color="white" [fillWidth]="true">
+            <p>Register without extra cover</p>
+        </app-text-button>
     </div>
 </app-page>

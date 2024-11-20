@@ -45,6 +45,22 @@
             background-color: var(--mono-hover);
         }
     }
+
+    &.white {
+        background: white;
+        color: #222;
+
+        border-radius: 8px;
+        border: 1px solid var(--Dark-grey, #222);
+        background: var(--DG-Greys-100-white, #fff);
+
+        /* drop shad button level 1 */
+        box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.06);
+
+        &:hover:enabled {
+            background-color: rgb(171, 171, 171);
+        }
+    }
 }
 
 .button:disabled {

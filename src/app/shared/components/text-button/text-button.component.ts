@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
 })
 export class TextButtonComponent {
 
-  @Input() color: 'primary' | 'mono' = 'mono';
+  @Input() color: 'primary' | 'mono' | 'white' = 'mono';
   @Input() text: string;
   @Input() width: number;
   @Input() fillWidth: boolean = false;

@@ -1,23 +1,25 @@
-import { JsonPipe } from '@angular/common';
-import { Component, computed, inject, ResourceRef } from '@angular/core';
+import { Component, computed, inject, ResourceRef, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
 import { ModelSerialResponse, RegistrationService } from '../../core/services/registration.service';
 import { RegistrationCodeComponent } from './registration-code.component';
 
 @Component({
   selector: 'app-registration-code-container',
-  imports: [RegistrationCodeComponent, JsonPipe],
+  imports: [RegistrationCodeComponent],
   templateUrl: './registration-code.container.html'
 })
 export class RegistrationCodeContainer {
 
-  hasSubtmitBeenClicked = false;
+  hasSubmitBeenClicked = false;
   isValidRegCode = false;
-  modelSerialResponse: ModelSerialResponse;
 
-  validateModelAndSerialNumberResource: ResourceRef<ModelSerialResponse[]>;
-  data = computed(() => this.validateModelAndSerialNumberResource?.value() ?? []);
+  modelSerialNumberResource: ResourceRef<ModelSerialResponse[]>;
+  modelSerialResponse = computed(() => this.modelSerialNumberResource?.value()?.[0] ?? {} as ModelSerialResponse);
+
+  registrationCodeSubmitted = signal<string>('');
+
 
   constructor(private registrationService: RegistrationService, private router: Router) {
     let route = inject(ActivatedRoute);
@@ -27,9 +29,20 @@ export class RegistrationCodeContainer {
       let client = x.get('client');
 
       if (model && serial && client) {
-        this.validateModelAndSerialNumberResource = rxResource({
+        this.modelSerialNumberResource = rxResource({
           request: () => ({ modelNumber: model, serialNumber: serial }),
           loader: (parameters) => registrationService.validateModelAndSerialNumber(parameters.request.modelNumber, parameters.request.serialNumber)
+        })
+      } else {
+        this.modelSerialNumberResource = rxResource({
+          request: this.registrationCodeSubmitted,
+          loader: ({ request }) => {
+            if (request) {
+              return registrationService.getModelAndSerialNumberFromRegistrationCode(request)
+            } else {
+              return of([]);
+            }
+          }
         })
       }
     })
@@ -38,19 +51,20 @@ export class RegistrationCodeContainer {
   }
 
   submitClicked(registrationCode: string) {
-    this.hasSubtmitBeenClicked = true;
-    this.registrationService.getModelAndSerialNumberFromRegistrationCode(registrationCode).subscribe(
-      x => {
-        if (x.length > 0) {
-          this.isValidRegCode = true;
-          this.modelSerialResponse = x[0];
-          this.registrationService.regData.modelNumber = this.modelSerialResponse.Model_Number;
-          this.registrationService.regData.serialNumber = this.modelSerialResponse.Serial_Number;
-        } else {
-          this.hasSubtmitBeenClicked = false;
-        }
-      }
-    );
+    this.hasSubmitBeenClicked = true;
+    this.registrationCodeSubmitted.set(registrationCode);
+    // this.registrationService.getModelAndSerialNumberFromRegistrationCode(registrationCode).subscribe(
+    //   x => {
+    //     if (x.length > 0) {
+    //       this.isValidRegCode = true;
+    //       // this.modelSerialResponse.set(x[0]);
+    //       this.registrationService.regData.modelNumber = this.modelSerialResponse().Model_Number;
+    //       this.registrationService.regData.serialNumber = this.modelSerialResponse().Serial_Number;
+    //     } else {
+    //       this.hasSubmitBeenClicked = false;
+    //     }
+    //   }
+    // );
     // this.router.navigateByUrl('cost');
   }
 

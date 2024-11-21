@@ -1,0 +1,23 @@
+<app-page [title]="title" [subheader]="subheader" [loading]="modelSerialNumberResource.isLoading()">
+    <app-panel>
+        <div class="brand-appliance">
+            <i [class]="'fa-light fa-' + modelSerialNumberData().icon"></i>
+            <p class="bold-text">{{modelSerialNumberData().Brand}}
+                {{modelSerialNumberData().Type}}</p>
+        </div>
+        <div class="model-serial">
+            <p class="bold-text">Model number</p>
+            <p class="value">{{modelSerialNumberData().Model_Number}}</p>
+        </div>
+        <div class="model-serial">
+            <p class="bold-text">Serial number</p>
+            <p class="value">{{modelSerialNumberData().Serial_Number}}</p>
+        </div>
+    </app-panel>
+    <div class="actions">
+        <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" color="primary"
+            (click)="continueClicked()">
+            <p>Continue</p>
+        </app-text-button>
+    </div>
+</app-page>

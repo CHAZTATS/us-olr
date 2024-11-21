@@ -19,7 +19,7 @@ export class NavigationContainer {
             let client = x.get('client');
 
             if (model && serial && client) {
-                router.navigate(['/registration-code'], {
+                router.navigate(['/registration-code-with-params'], {
                     queryParamsHandling: "preserve"
                 })
             }

@@ -23,6 +23,7 @@ export class RegistrationService {
   appliances: Appliance[] = [];
 
   resourceStatus = ResourceStatus;
+  get: Observable<unknown>;
 
   constructor(private http: HttpClient) {
     this.regData = new RegistrationData();
@@ -66,7 +67,7 @@ export class RegistrationService {
   }
 
   validateModelAndSerialNumber(modelNumber?: string, serialNumber?: string) {
-    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?model=${modelNumber}&serial=${serialNumber}&client=${brand.modelSerialAPIBrandCode}`);
+    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?model=${modelNumber}&serial=${serialNumber}&client=WHIRL`);
   }
 
   getModelAndSerialNumberFromRegistrationCode(registrationCode?: string) {

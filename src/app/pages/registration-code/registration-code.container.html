@@ -1,4 +1,6 @@
-{{data() | json}}
+{{modelSerialNumberResource.isLoading()}}
 <app-registration-code (onSubmitClicked)="submitClicked($event)" (onContinueClicked)="continueClicked()"
+    [loading]="modelSerialNumberResource.isLoading()"
     (onIDontHaveARegistrationCodeClicked)="iDontHaveARegistrationCodeClicked()"
-    [modelSerialNumberResponse]="modelSerialResponse"></app-registration-code>
+    [modelSerialNumberResponse]="modelSerialResponse()"
+    [modelSerialNumberResource]="modelSerialNumberResource"></app-registration-code>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ResourceRef, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageComponent } from '../../core/components/page/page.component';
 import { ModelSerialResponse } from '../../core/services/registration.service';
@@ -15,7 +15,9 @@ export class RegistrationCodeComponent {
 
   @Input() submitClicked: boolean = false;
   @Input() isValidRegCode: boolean = false;
-  @Input() modelSerialNumberResponse: ModelSerialResponse;
+  @Input() modelSerialNumberResource: ResourceRef<ModelSerialResponse[]>;
+  modelSerialNumberResponse = input.required<ModelSerialResponse>();
+  loading = input.required<boolean>();
 
   @Output() onSubmitClicked: EventEmitter<string> = new EventEmitter();
   @Output() onContinueClicked: EventEmitter<null> = new EventEmitter();

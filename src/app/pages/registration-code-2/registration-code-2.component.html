@@ -7,10 +7,10 @@
         </form>
         <div class="actions">
             <app-text-button [height]="48" [width]="108" [padding]="'0px 20px'" [fontSize]="20"
-                [disabled]="registrationCodeInput.invalid!" (click)="submit()">
+                [disabled]="registrationCodeInput.invalid!" (click)="submitClicked()">
                 <p>Submit</p>
             </app-text-button>
-            <a (click)="iDontHaveARegistraionCodeClicked()">
+            <a (click)="iDontHaveARegistrationCodeClicked()">
                 I don't have a registration code
             </a>
         </div>

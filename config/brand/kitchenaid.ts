@@ -1,5 +1,5 @@
 export const brand = {
-    name: 'Kitchenaid',
+    name: 'KitchenAid',
     categoriesAPIBrandCode: 'KHAID',
-    modelSerialAPIBrandCode: 'Kitchenaid'
+    modelSerialAPIBrandCode: 'KitchenAid'
 };

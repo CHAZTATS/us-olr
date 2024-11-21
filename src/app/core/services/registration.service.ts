@@ -71,7 +71,7 @@ export class RegistrationService {
 
   getModelAndSerialNumberFromRegistrationCode(registrationCode?: string) {
     //782A31DTJ
-    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?client=${brand.modelSerialAPIBrandCode}&registrationCode=${registrationCode}`);
+    return this.http.get<ModelSerialResponse[]>(`${this.MODEL_SERIAL_API}/model-serialization-v2?client=WHIRL&registrationCode=${registrationCode}`);
   }
 
   searchAddress(search: string) {
@@ -97,8 +97,48 @@ export class RegistrationService {
       .pipe(map((result: { Items: SelectedAddressyAddress[] }) => result.Items[0]));
   }
 
+  // getQuote() {
+  //   return this.http.post<any>(`https://api.aws.ci.test.domgenusa-test.cloud/pr-127/quote`, {
+  //     "sessionId": "checking-123",
+  //     "client": "Whirlpool",
+  //     "channel": "Web",
+  //     "system": "Registria",
+  //     "country": "USA",
+  //     "currency": "USD",
+  //     "customer": {
+  //       "firstName": "Charles",
+  //       "lastName": "Taverner",
+  //       "email": "chaztats@gmail.com",
+  //       "phone": {
+  //         "Home": "07471949230"
+  //       },
+  //       "billingAddress": {
+  //         "line1": "180 Garth Rd Apt TE",
+  //         "line2": "",
+  //         "city": "Scarsdale",
+  //         "state": "NY",
+  //         "postalCode": "10583-3839",
+  //         "country": "USA"
+  //       }
+  //     },
+  //     "merchandise": [
+  //       {
+  //         "type": "Refrigerator",
+  //         "merchandiseInGoodWorkingOrder": true,
+  //         "brand": "KitchenAid",
+  //         "serialNumber": "KA1404511",
+  //         "modelNumber": "KBSN602EPA",
+  //         "purchaseDate": "2024-10-31",
+  //         "purchasePrice": "123",
+  //         "purchaseFrom": "",
+  //         "locatedAtMailingAddress": true
+  //       }
+  //     ]
+  //   });
+  // }
+
   getQuote() {
-    return this.http.post<any>(`${this.MODEL_SERIAL_API}/quote`, this.buildQuoteAPIRequest());
+    return this.http.post<any>(`https://api.aws.ci.test.domgenusa-test.cloud/pr-127/quote`, this.buildQuoteAPIRequest());
   }
 
   getQuoteSalesforce() {
@@ -111,7 +151,8 @@ export class RegistrationService {
 
   buildQuoteAPIRequest(): QuoteAPIRequest {
     let request = new QuoteAPIRequest();
-    request.client = brand.name;
+    request.sessionId = 'checking-123';
+    request.client = 'Whirlpool';
     request.channel = 'Web';
     request.system = 'Registria';
     request.country = 'USA';
@@ -130,8 +171,8 @@ export class RegistrationService {
 
     let billingAddress = {} as QuoteAPIBillingAddress;
 
-    billingAddress.line1 = this.regData.customer.billingAddress.addressLine1;
-    billingAddress.line2 = this.regData.customer.billingAddress.addressLine2;
+    billingAddress.line1 = this.regData.customer.billingAddress.line1;
+    billingAddress.line2 = this.regData.customer.billingAddress.line2;
     billingAddress.city = this.regData.customer.billingAddress.city;
     billingAddress.state = this.regData.customer.billingAddress.state;
     billingAddress.postalCode = this.regData.customer.billingAddress.postalCode;
@@ -143,7 +184,7 @@ export class RegistrationService {
 
     let merchandise = {} as Merchandise;
 
-    merchandise.type = this.regData.applianceType;
+    merchandise.type = this.regData.appliance;
     merchandise.merchandiseInGoodWorkingOrder = true;
     merchandise.brand = this.BRAND.name;
     merchandise.serialNumber = this.regData.serialNumber;
@@ -161,7 +202,7 @@ export class RegistrationService {
 }
 
 export class QuoteAPIRequest {
-  // sessionId: string;
+  sessionId: string;
   client: string;
   channel: string;
   system: string;
@@ -199,7 +240,7 @@ interface Merchandise {
   serialNumber: string;
   modelNumber: string;
   purchaseDate: string;
-  purchasePrice: number;
+  purchasePrice: string;
   purchaseFrom: string;
   locatedAtMailingAddress: boolean;
 }
@@ -211,7 +252,7 @@ export class RegistrationData {
   registrationCode: string;
   modelNumber: string;
   serialNumber: string;
-  price: number;
+  price: string;
   date: string;
   didYouBuyAPlan: boolean;
   plannedPurchases: string[];
@@ -269,6 +310,7 @@ export interface ModelSerialResponse {
   Default_Guarantee_Period_Labor: number;
   LoadDate: Date;
   LoadFilename: string;
+  icon: string;
 }
 
 export interface Address {

@@ -4,9 +4,9 @@ import { RegistrationService } from '../../core/services/registration.service';
 import { CostComponent } from './cost.component';
 
 @Component({
-    selector: 'app-cost-container',
-    imports: [CostComponent],
-    templateUrl: './cost.container.html'
+  selector: 'app-cost-container',
+  imports: [CostComponent],
+  templateUrl: './cost.container.html'
 })
 export class CostContainer {
 
@@ -17,11 +17,11 @@ export class CostContainer {
   }
 
   ngOnInit() {
-    this.cost = this.registrationService.regData.price;
+    this.cost = +this.registrationService.regData.price;
   }
 
   continueClicked(cost: number) {
-    this.registrationService.regData.price = cost;
+    this.registrationService.regData.price = cost.toString();
     this.router.navigateByUrl('arrival-date');
   }
 

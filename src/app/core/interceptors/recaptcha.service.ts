@@ -28,7 +28,7 @@ export class RecaptchaService implements HttpInterceptor {
           newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.modelSerialAPIKey);
         }
         if (req.url.includes('quote') || req.url.includes('plan')) {
-          newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.quoteAPIKey);
+          newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, 'UbnYLea9dYKiFjvLgETQ1GSjFF5m3GPuAOKCvli0');
         }
         const newReq = req.clone({ headers: newHeaders });
         return next.handle(newReq);

@@ -3,11 +3,10 @@ import { PageComponent } from '../../core/components/page/page.component';
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-  selector: 'app-have-registration-code',
-  standalone: true,
-  imports: [PageComponent, TextButtonComponent],
-  templateUrl: './have-registration-code.component.html',
-  styleUrl: './have-registration-code.component.scss'
+    selector: 'app-have-registration-code',
+    imports: [PageComponent, TextButtonComponent],
+    templateUrl: './have-registration-code.component.html',
+    styleUrl: './have-registration-code.component.scss'
 })
 export class HaveRegistrationCodeComponent {
 

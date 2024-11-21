@@ -4,10 +4,9 @@ import { RegistrationService } from '../../core/services/registration.service';
 import { ServicePlanComponent } from './service-plan.component';
 
 @Component({
-  selector: 'app-service-plan-container',
-  standalone: true,
-  imports: [ServicePlanComponent],
-  templateUrl: './service-plan.container.html',
+    selector: 'app-service-plan-container',
+    imports: [ServicePlanComponent],
+    templateUrl: './service-plan.container.html'
 })
 export class ServicePlanContainer {
 

@@ -4,11 +4,10 @@ import { TextButtonComponent } from '../../shared/components/text-button/text-bu
 import { Appliance } from './appliance.container';
 
 @Component({
-  selector: 'app-appliance',
-  standalone: true,
-  imports: [PageComponent, TextButtonComponent],
-  templateUrl: './appliance.component.html',
-  styleUrl: './appliance.component.scss'
+    selector: 'app-appliance',
+    imports: [PageComponent, TextButtonComponent],
+    templateUrl: './appliance.component.html',
+    styleUrl: './appliance.component.scss'
 })
 export class ApplianceComponent {
 

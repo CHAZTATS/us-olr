@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-text-button',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './text-button.component.html',
-  styleUrl: './text-button.component.scss'
+    selector: 'app-text-button',
+    imports: [CommonModule],
+    templateUrl: './text-button.component.html',
+    styleUrl: './text-button.component.scss'
 })
 export class TextButtonComponent {
 

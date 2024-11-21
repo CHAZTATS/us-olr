@@ -4,11 +4,10 @@ import { PageComponent } from "../../core/components/page/page.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-  selector: 'app-cost',
-  standalone: true,
-  imports: [PageComponent, FormsModule, TextButtonComponent],
-  templateUrl: './cost.component.html',
-  styleUrl: './cost.component.scss'
+    selector: 'app-cost',
+    imports: [PageComponent, FormsModule, TextButtonComponent],
+    templateUrl: './cost.component.html',
+    styleUrl: './cost.component.scss'
 })
 export class CostComponent {
 

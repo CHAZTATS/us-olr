@@ -5,11 +5,10 @@ import { PageSubheaderComponent } from "../page-subheader/page-subheader.compone
 import { PageTitleComponent } from "../page-title/page-title.component";
 
 @Component({
-  selector: 'app-page',
-  standalone: true,
-  imports: [PageHeaderComponent, PageTitleComponent, PageSubheaderComponent, NgIf],
-  templateUrl: './page.component.html',
-  styleUrl: './page.component.scss'
+    selector: 'app-page',
+    imports: [PageHeaderComponent, PageTitleComponent, PageSubheaderComponent, NgIf],
+    templateUrl: './page.component.html',
+    styleUrl: './page.component.scss'
 })
 export class PageComponent {
 

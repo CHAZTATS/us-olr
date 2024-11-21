@@ -5,11 +5,10 @@ import { PanelComponent } from "../../shared/components/panel/panel.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-  selector: 'app-model-serial-number',
-  standalone: true,
-  imports: [TextButtonComponent, PanelComponent, PageComponent, FormsModule],
-  templateUrl: './model-serial-number.component.html',
-  styleUrl: './model-serial-number.component.scss'
+    selector: 'app-model-serial-number',
+    imports: [TextButtonComponent, PanelComponent, PageComponent, FormsModule],
+    templateUrl: './model-serial-number.component.html',
+    styleUrl: './model-serial-number.component.scss'
 })
 export class ModelSerialNumberComponent {
 

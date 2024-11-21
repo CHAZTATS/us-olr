@@ -100,6 +100,14 @@ export class RegistrationService {
     return this.http.post<any>(`${this.MODEL_SERIAL_API}/quote`, this.buildQuoteAPIRequest());
   }
 
+  getQuoteSalesforce() {
+    // const headers = {
+    //   'Content-type': 'application/json',
+    //   Authorization: 'Bearer ' + authCode
+    // }
+    let url = `/services/apexrest/vlocity_ins/v1/integrationprocedure/' + integrationProcedure + '?chainable=false'`
+  }
+
   buildQuoteAPIRequest(): QuoteAPIRequest {
     let request = new QuoteAPIRequest();
     request.client = brand.name;

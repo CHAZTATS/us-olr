@@ -4,10 +4,9 @@ import { RegistrationService } from '../../core/services/registration.service';
 import { ArrivalDateComponent } from './arrival-date.component';
 
 @Component({
-  selector: 'app-arrival-date-container',
-  standalone: true,
-  imports: [ArrivalDateComponent],
-  templateUrl: './arrival-date.container.html',
+    selector: 'app-arrival-date-container',
+    imports: [ArrivalDateComponent],
+    templateUrl: './arrival-date.container.html'
 })
 export class ArrivalDateContainer {
 

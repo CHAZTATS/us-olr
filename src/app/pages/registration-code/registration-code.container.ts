@@ -4,10 +4,9 @@ import { ModelSerialResponse, RegistrationService } from '../../core/services/re
 import { RegistrationCodeComponent } from './registration-code.component';
 
 @Component({
-  selector: 'app-registration-code-container',
-  standalone: true,
-  imports: [RegistrationCodeComponent],
-  templateUrl: './registration-code.container.html',
+    selector: 'app-registration-code-container',
+    imports: [RegistrationCodeComponent],
+    templateUrl: './registration-code.container.html'
 })
 export class RegistrationCodeContainer {
 

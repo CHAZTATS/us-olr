@@ -7,11 +7,10 @@ import { PanelComponent } from "../../shared/components/panel/panel.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-  selector: 'app-registration-code',
-  standalone: true,
-  imports: [PageComponent, TextButtonComponent, PanelComponent, FormsModule, FontAwesomeModule],
-  templateUrl: './registration-code.component.html',
-  styleUrl: './registration-code.component.scss'
+    selector: 'app-registration-code',
+    imports: [PageComponent, TextButtonComponent, PanelComponent, FormsModule, FontAwesomeModule],
+    templateUrl: './registration-code.component.html',
+    styleUrl: './registration-code.component.scss'
 })
 export class RegistrationCodeComponent {
 

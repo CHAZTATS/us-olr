@@ -1,4 +1,4 @@
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageComponent } from '../../core/components/page/page.component';
@@ -8,8 +8,7 @@ import { TextButtonComponent } from "../../shared/components/text-button/text-bu
 
 @Component({
   selector: 'app-personal-details',
-  standalone: true,
-  imports: [PageComponent, JsonPipe, FormsModule, TextButtonComponent, CommonModule, PanelComponent, ReactiveFormsModule],
+  imports: [PageComponent, FormsModule, TextButtonComponent, CommonModule, PanelComponent, ReactiveFormsModule],
   templateUrl: './personal-details.component.html',
   styleUrl: './personal-details.component.scss',
   encapsulation: ViewEncapsulation.None

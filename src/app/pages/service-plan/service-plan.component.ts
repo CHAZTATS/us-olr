@@ -4,11 +4,10 @@ import { PageComponent } from "../../core/components/page/page.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-  selector: 'app-service-plan',
-  standalone: true,
-  imports: [PageComponent, FormsModule, TextButtonComponent],
-  templateUrl: './service-plan.component.html',
-  styleUrl: './service-plan.component.scss'
+    selector: 'app-service-plan',
+    imports: [PageComponent, FormsModule, TextButtonComponent],
+    templateUrl: './service-plan.component.html',
+    styleUrl: './service-plan.component.scss'
 })
 export class ServicePlanComponent {
 

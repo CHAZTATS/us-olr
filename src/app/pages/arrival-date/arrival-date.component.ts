@@ -4,11 +4,10 @@ import { PageComponent } from "../../core/components/page/page.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-  selector: 'app-arrival-date',
-  standalone: true,
-  imports: [PageComponent, TextButtonComponent, FormsModule],
-  templateUrl: './arrival-date.component.html',
-  styleUrl: './arrival-date.component.scss'
+    selector: 'app-arrival-date',
+    imports: [PageComponent, TextButtonComponent, FormsModule],
+    templateUrl: './arrival-date.component.html',
+    styleUrl: './arrival-date.component.scss'
 })
 export class ArrivalDateComponent {
 

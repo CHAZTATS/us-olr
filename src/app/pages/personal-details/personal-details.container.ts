@@ -6,10 +6,9 @@ import { Address, AddressyAddress, RegistrationService } from '../../core/servic
 import { PersonalDetailsComponent } from './personal-details.component';
 
 @Component({
-  selector: 'app-personal-details-container',
-  standalone: true,
-  imports: [PersonalDetailsComponent, AsyncPipe],
-  templateUrl: './personal-details.container.html',
+    selector: 'app-personal-details-container',
+    imports: [PersonalDetailsComponent, AsyncPipe],
+    templateUrl: './personal-details.container.html'
 })
 export class PersonalDetailsContainer {
 

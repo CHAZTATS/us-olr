@@ -4,10 +4,9 @@ import { RegistrationService } from '../../core/services/registration.service';
 import { CostComponent } from './cost.component';
 
 @Component({
-  selector: 'app-cost-container',
-  standalone: true,
-  imports: [CostComponent],
-  templateUrl: './cost.container.html',
+    selector: 'app-cost-container',
+    imports: [CostComponent],
+    templateUrl: './cost.container.html'
 })
 export class CostContainer {
 

@@ -3,11 +3,10 @@ import { PageComponent } from "../../core/components/page/page.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-  selector: 'app-planning-purchase',
-  standalone: true,
-  imports: [PageComponent, TextButtonComponent],
-  templateUrl: './planning-purchase.component.html',
-  styleUrl: './planning-purchase.component.scss'
+    selector: 'app-planning-purchase',
+    imports: [PageComponent, TextButtonComponent],
+    templateUrl: './planning-purchase.component.html',
+    styleUrl: './planning-purchase.component.scss'
 })
 export class PlanningPurchaseComponent {
 

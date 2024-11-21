@@ -4,10 +4,9 @@ import { RegistrationService } from '../../core/services/registration.service';
 import { PlanningPurchaseComponent } from './planning-purchase.component';
 
 @Component({
-  selector: 'app-planning-purchase-container',
-  standalone: true,
-  imports: [PlanningPurchaseComponent],
-  templateUrl: './planning-purchase.container.html',
+    selector: 'app-planning-purchase-container',
+    imports: [PlanningPurchaseComponent],
+    templateUrl: './planning-purchase.container.html'
 })
 export class PlanningPurchaseContainer {
 

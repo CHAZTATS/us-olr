@@ -6,10 +6,9 @@ import { RegistrationService } from '../../core/services/registration.service';
 import { ApplianceComponent } from './appliance.component';
 
 @Component({
-  selector: 'app-appliance-container',
-  standalone: true,
-  imports: [ApplianceComponent, AsyncPipe],
-  templateUrl: './appliance.container.html',
+    selector: 'app-appliance-container',
+    imports: [ApplianceComponent, AsyncPipe],
+    templateUrl: './appliance.container.html'
 })
 export class ApplianceContainer {
 

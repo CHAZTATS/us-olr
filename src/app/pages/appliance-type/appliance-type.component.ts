@@ -4,11 +4,10 @@ import { IconButtonComponent } from "../../shared/components/icon-button/icon-bu
 import { ApplianceType } from './appliance-type.container';
 
 @Component({
-  selector: 'app-appliance-type',
-  standalone: true,
-  imports: [PageComponent, IconButtonComponent],
-  templateUrl: './appliance-type.component.html',
-  styleUrl: './appliance-type.component.scss'
+    selector: 'app-appliance-type',
+    imports: [PageComponent, IconButtonComponent],
+    templateUrl: './appliance-type.component.html',
+    styleUrl: './appliance-type.component.scss'
 })
 export class ApplianceTypeComponent {
 

@@ -1,4 +1,5 @@
 import { Component, ResourceRef } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { RegistrationService } from '../../core/services/registration.service';
 import { ApplianceTypeComponent } from './appliance-type.component';
@@ -13,7 +14,9 @@ export class ApplianceTypeContainer {
   applianceTypesResource: ResourceRef<ApplianceType[]>;
 
   constructor(private registrationService: RegistrationService, private router: Router) {
-    this.applianceTypesResource = registrationService.applianceTypeResource;
+    this.applianceTypesResource = rxResource({
+      loader: () => registrationService.getApplianceCategories()
+    });
   }
 
   applianceTypeClicked(applianceType: ApplianceType) {

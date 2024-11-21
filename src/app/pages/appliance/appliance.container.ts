@@ -1,52 +1,22 @@
-import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ResourceRef } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { RegistrationService } from '../../core/services/registration.service';
 import { ApplianceComponent } from './appliance.component';
 
 @Component({
-    selector: 'app-appliance-container',
-    imports: [ApplianceComponent, AsyncPipe],
-    templateUrl: './appliance.container.html'
+  selector: 'app-appliance-container',
+  imports: [ApplianceComponent],
+  templateUrl: './appliance.container.html'
 })
 export class ApplianceContainer {
 
-  testAppliances: Appliance[] = [
-    {
-      text: 'Fridge'
-    },
-    {
-      text: 'Freezer'
-    },
-    {
-      text: 'Oven'
-    },
-    {
-      text: 'Fridge'
-    },
-    {
-      text: 'Freezer'
-    },
-    {
-      text: 'Oven'
-    },
-    {
-      text: 'Fridge'
-    },
-    {
-      text: 'Freezer'
-    },
-    {
-      text: 'Oven'
-    },
-  ]
-
-  appliances$: Observable<Appliance[]>;
+  appliancesResource: ResourceRef<Appliance[]>;
 
   constructor(private registrationService: RegistrationService, private router: Router) {
-    this.appliances$ = of(this.testAppliances);
-    this.appliances$ = this.registrationService.getAppliances();
+    this.appliancesResource = rxResource({
+      loader: () => registrationService.getAppliances()
+    });
   }
 
   applianceClicked(appliance: Appliance) {

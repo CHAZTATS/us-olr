@@ -1,6 +1,6 @@
-<app-page [title]="title" [subheader]="subheader">
+<app-page [title]="title" [subheader]="subheader" [loading]="appliancesResource.isLoading()">
     <div class="buttons">
-        @for (appliance of appliances; track $index) {
+        @for (appliance of appliancesResource.value(); track $index) {
         <app-text-button [width]="295" [height]="50" padding="8px 16px" (click)="applianceClicked(appliance)">
             <p>{{appliance.text}}</p>
         </app-text-button>

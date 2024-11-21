@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, ResourceStatus } from '@angular/core';
-import { rxResource } from '@angular/core/rxjs-interop';
 import { map, Observable, of } from 'rxjs';
 import { brand } from '../../../../config/brand/brand';
 import { environment } from '../../../../config/environment/environment';
@@ -24,10 +23,6 @@ export class RegistrationService {
   appliances: Appliance[] = [];
 
   resourceStatus = ResourceStatus;
-
-  applianceTypeResource = rxResource({
-    loader: () => this.getApplianceCategories()
-  });
 
   constructor(private http: HttpClient) {
     this.regData = new RegistrationData();

@@ -1,21 +1,19 @@
-import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ResourceRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { RegistrationService } from '../../core/services/registration.service';
 import { ApplianceTypeComponent } from './appliance-type.component';
 
 @Component({
-    selector: 'app-appliance-type-container',
-    imports: [ApplianceTypeComponent, AsyncPipe],
-    templateUrl: './appliance-type.container.html'
+  selector: 'app-appliance-type-container',
+  imports: [ApplianceTypeComponent],
+  templateUrl: './appliance-type.container.html'
 })
 export class ApplianceTypeContainer {
 
-  applianceTypes$: Observable<ApplianceType[]>;
+  applianceTypesResource: ResourceRef<ApplianceType[]>;
 
   constructor(private registrationService: RegistrationService, private router: Router) {
-    this.applianceTypes$ = registrationService.getApplianceCategories();
+    this.applianceTypesResource = registrationService.applianceTypeResource;
   }
 
   applianceTypeClicked(applianceType: ApplianceType) {

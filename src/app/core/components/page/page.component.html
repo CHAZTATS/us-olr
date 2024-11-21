@@ -9,6 +9,10 @@
         <app-page-subheader *ngIf="subheader">
             {{subheader}}
         </app-page-subheader>
+        @if(!loading) {
         <ng-content></ng-content>
+        } @else {
+        <app-spinner></app-spinner>
+        }
     </div>
 </div>

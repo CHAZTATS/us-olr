@@ -471,51 +471,67 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development-whirlpool": {
+              "hmr": false,
               "buildTarget": "us-olr:build:development-whirlpool"
             },
             "test-whirlpool": {
+              "hmr": false,
               "buildTarget": "us-olr:build:test-whirlpool"
             },
             "staging-whirlpool": {
+              "hmr": false,
               "buildTarget": "us-olr:build:staging-whirlpool"
             },
             "production-whirlpool": {
+              "hmr": false,
               "buildTarget": "us-olr:build:production-whirlpool"
             },
             "development-amana": {
+              "hmr": false,
               "buildTarget": "us-olr:build:development-amana"
             },
             "test-amana": {
+              "hmr": false,
               "buildTarget": "us-olr:build:test-amana"
             },
             "staging-amana": {
+              "hmr": false,
               "buildTarget": "us-olr:build:staging-amana"
             },
             "production-amana": {
+              "hmr": false,
               "buildTarget": "us-olr:build:production-amana"
             },
             "development-maytag": {
+              "hmr": false,
               "buildTarget": "us-olr:build:development-maytag"
             },
             "test-maytag": {
+              "hmr": false,
               "buildTarget": "us-olr:build:test-maytag"
             },
             "staging-maytag": {
+              "hmr": false,
               "buildTarget": "us-olr:build:staging-maytag"
             },
             "production-maytag": {
+              "hmr": false,
               "buildTarget": "us-olr:build:production-maytag"
             },
             "development-kitchenaid": {
+              "hmr": false,
               "buildTarget": "us-olr:build:development-kitchenaid"
             },
             "test-kitchenaid": {
+              "hmr": false,
               "buildTarget": "us-olr:build:test-kitchenaid"
             },
             "staging-kitchenaid": {
+              "hmr": false,
               "buildTarget": "us-olr:build:staging-kitchenaid"
             },
             "production-kitchenaid": {
+              "hmr": false,
               "buildTarget": "us-olr:build:production-kitchenaid"
             }
           },

@@ -1,6 +1,6 @@
-<app-page [title]="title">
+<app-page [title]="title" [loading]="applianceTypesResource.isLoading()">
     <div class="buttons">
-        @for (applianceType of applianceTypes; track $index) {
+        @for (applianceType of applianceTypesResource.value(); track $index) {
         <app-icon-button [icon]="applianceType.icon" [text]="applianceType.text"
             (click)="applianceTypeClicked(applianceType)"></app-icon-button>
         }
@@ -10,5 +10,4 @@
         <p>United States Registration only.</p>
         <a>Registering in Canada? Visit here</a>
     </div>
-
 </app-page>

@@ -1,16 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PageComponent } from '../../core/components/page/page.component';
 import { ModelSerialResponse } from '../../core/services/registration.service';
 import { PanelComponent } from "../../shared/components/panel/panel.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-    selector: 'app-registration-code',
-    imports: [PageComponent, TextButtonComponent, PanelComponent, FormsModule, FontAwesomeModule],
-    templateUrl: './registration-code.component.html',
-    styleUrl: './registration-code.component.scss'
+  selector: 'app-registration-code',
+  imports: [PageComponent, TextButtonComponent, PanelComponent, FormsModule],
+  templateUrl: './registration-code.component.html',
+  styleUrl: './registration-code.component.scss'
 })
 export class RegistrationCodeComponent {
 

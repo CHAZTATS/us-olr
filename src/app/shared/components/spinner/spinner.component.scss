@@ -1,0 +1,19 @@
+.loading-spinner {
+    width: 100px;
+    height: 100px;
+    animation: spin 0.5s infinite linear;
+
+    .st0 {
+        fill: var(--primary);
+    }
+
+    .st1 {
+        fill: var(--primary);
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

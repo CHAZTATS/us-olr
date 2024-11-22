@@ -142,14 +142,6 @@ export class RegistrationService {
     return this.http.post<any>(`https://api.aws.ci.test.domgenusa-test.cloud/pr-127/quote`, this.buildQuoteAPIRequest());
   }
 
-  getQuoteSalesforce() {
-    // const headers = {
-    //   'Content-type': 'application/json',
-    //   Authorization: 'Bearer ' + authCode
-    // }
-    let url = `/services/apexrest/vlocity_ins/v1/integrationprocedure/' + integrationProcedure + '?chainable=false'`
-  }
-
   buildQuoteAPIRequest(): QuoteAPIRequest {
     let request = new QuoteAPIRequest();
     request.sessionId = 'checking-123';

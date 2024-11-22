@@ -1,9 +1,9 @@
 <app-page [title]="title" [subheader]="subheader">
     <form [formGroup]="personalDetailsForm">
         <label for="firstName">First name*</label>
-        <input type="text" name="firstName" id="firstName" formControlName="firstName" required>
+        <input type="text" name="firstName" id="firstName" formControlName="firstName">
         <label for="lastName">Last name*</label>
-        <input type="text" name="lastName" id="lastName" formControlName="lastName" required>
+        <input type="text" name="lastName" id="lastName" formControlName="lastName">
         <div class="address">
             <div class="tabs">
                 <div class="tab-selector" [ngClass]="{ 'active': !manualAddress }" (click)="findAddressClicked()">
@@ -35,23 +35,23 @@
             <app-panel>
                 <form formGroupName="billingAddress">
                     <label for="addressLine1" class="bold">Address Line 1*</label>
-                    <input type="text" name="addressLine1" id="addressLine1" formControlName="line1" required>
+                    <input type="text" name="addressLine1" id="addressLine1" formControlName="line1">
                     <label for="addressLine2" class="bold">Address Line 2</label>
                     <input type="text" name="addressLine2" id="addressLine2" formControlName="line2">
                     <label for="towncity" class="bold">Town/City</label>
                     <input type="text" name="towncity" id="towncity" formControlName="city">
                     <label for="state" class="bold">State</label>
-                    <input type="text" name="state" id="state" formControlName="state" requied>
+                    <input type="text" name="state" id="state" formControlName="state">
                     <label for="zipcode" class="bold">Zip Code*</label>
-                    <input type="text" name="zipcode" id="zipcode" formControlName="postalCode" required>
+                    <input type="text" name="zipcode" id="zipcode" formControlName="postalCode">
                 </form>
             </app-panel>
             }
         </div>
         <label for="email">Email Address*</label>
-        <input type="text" name="email" id="email" formControlName="email" required>
+        <input type="text" name="email" id="email" formControlName="email">
         <label for="phone">Phone number*</label>
-        <input type="text" name="phone" id="phone" formControlName="phone" required>
+        <input type="text" name="phone" id="phone" formControlName="phone">
     </form>
     <div class="consent">
         <div class="heading">
@@ -64,8 +64,8 @@
         </div>
     </div>
     <div class="actions">
-        <app-text-button [height]="48" [width]="128" [padding]="'16px 20px'" [fontSize]="20" color="primary"
-            [fillWidth]="true" (click)="continueClicked()">
+        <app-text-button [height]="48" [width]="320" [padding]="'16px 20px'" [fontSize]="20" [fillWidth]="true"
+            color="primary" [disabled]="personalDetailsForm.invalid" (click)="continueClicked()">
             <p>Continue</p>
         </app-text-button>
     </div>

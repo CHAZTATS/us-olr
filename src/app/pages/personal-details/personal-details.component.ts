@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PageComponent } from '../../core/components/page/page.component';
 import { Address, AddressyAddress } from '../../core/services/registration.service';
 import { PanelComponent } from "../../shared/components/panel/panel.component";
@@ -32,21 +32,20 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   isAddressSelected = false;
 
   personalDetailsForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
     billingAddress: new FormGroup({
-      line1: new FormControl(''),
+      line1: new FormControl('', [Validators.required]),
       line2: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      postalCode: new FormControl(''),
+      city: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      postalCode: new FormControl('', [Validators.required]),
     })
   });
 
   continueClicked() {
-    console.log(this.personalDetailsForm.getRawValue());
     this.onContinueClicked.emit(this.personalDetailsForm);
   }
 

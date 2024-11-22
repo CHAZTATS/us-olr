@@ -10,7 +10,7 @@ describe('RegistrationCodeComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RegistrationCodeComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(RegistrationCodeComponent);
     component = fixture.componentInstance;

@@ -1,42 +1,54 @@
-import { Component, EventEmitter, Input, Output, ResourceRef, input } from '@angular/core';
+import { Component, computed, inject, ResourceStatus } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { PageComponent } from '../../core/components/page/page.component';
-import { ModelSerialResponse } from '../../core/services/registration.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
+import { PageComponent } from "../../core/components/page/page.component";
+import { ModelSerialResponse, RegistrationService } from '../../core/services/registration.service';
 import { PanelComponent } from "../../shared/components/panel/panel.component";
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
   selector: 'app-registration-code',
-  imports: [PageComponent, TextButtonComponent, PanelComponent, FormsModule],
+  imports: [PageComponent, PanelComponent, TextButtonComponent, FormsModule],
   templateUrl: './registration-code.component.html',
   styleUrl: './registration-code.component.scss'
 })
 export class RegistrationCodeComponent {
 
-  @Input() submitClicked: boolean = false;
-  @Input() isValidRegCode: boolean = false;
-  @Input() modelSerialNumberResource: ResourceRef<ModelSerialResponse[]>;
-  modelSerialNumberResponse = input.required<ModelSerialResponse>();
-  loading = input.required<boolean>();
-
-  @Output() onSubmitClicked: EventEmitter<string> = new EventEmitter();
-  @Output() onContinueClicked: EventEmitter<null> = new EventEmitter();
-  @Output() onIDontHaveARegistrationCodeClicked: EventEmitter<null> = new EventEmitter();
-
   title = 'Do you have your registration code?'
   subheader = "This is a 9-10 digit code that can be found on the registration card inside your appliance box. We'll use this to find your model and serial number.";
-  registrationCode: string = '';
 
-  submit() {
-    this.onSubmitClicked.emit(this.registrationCode);
+  registrationCode = '';
+
+  modelSerialNumberResource = rxResource({
+    loader: (param) => {
+      if (param.previous.status === ResourceStatus.Idle) {
+        // skip initial loading!
+        return of()
+      }
+
+      return this.registrationService.getModelAndSerialNumberFromRegistrationCode(this.registrationCode)
+    }
+  });
+
+  modelSerialNumberData = computed(() => this.modelSerialNumberResource.value()?.[0] ?? {} as ModelSerialResponse);
+
+  registrationService = inject(RegistrationService);
+  route = inject(ActivatedRoute);
+  router = inject(Router);
+
+
+  submitClicked() {
+    this.modelSerialNumberResource.reload();
+  }
+
+  iDontHaveARegistrationCodeClicked() {
+    this.router.navigateByUrl('model-serial-number');
   }
 
   continueClicked() {
-    this.onContinueClicked.emit();
-  }
-
-  iDontHaveARegistraionCodeClicked() {
-    this.onIDontHaveARegistrationCodeClicked.emit();
+    this.router.navigateByUrl('cost');
   }
 
 }

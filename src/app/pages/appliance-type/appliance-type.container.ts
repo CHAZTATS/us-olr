@@ -25,7 +25,14 @@ export class ApplianceTypeContainer {
       this.registrationService.regData.applianceTypeCode = applianceType.code;
       this.registrationService.appliances = [];
     }
-    this.router.navigateByUrl('appliance');
+    this.registrationService.getAppliances().subscribe(x => {
+      if (x.length == 1) {
+        this.registrationService.regData.appliance = x[0].text;
+        this.router.navigateByUrl('registration-code');
+      } else {
+        this.router.navigateByUrl('appliance');
+      }
+    })
   }
 
 }

@@ -1,4 +1,5 @@
 <app-page [title]="title" [subheader]="subheader" [loading]="modelSerialNumberResource.isLoading()">
+    @if(!modelSerialNumberResource.hasValue()){
     <app-panel>
         <form>
             <label for="registrationCodeInput">Enter your registration code</label>
@@ -7,10 +8,10 @@
         </form>
         <div class="actions">
             <app-text-button [height]="48" [width]="108" [padding]="'0px 20px'" [fontSize]="20"
-                [disabled]="registrationCodeInput.invalid!" (click)="submit()">
+                [disabled]="registrationCodeInput.invalid!" (click)="submitClicked()">
                 <p>Submit</p>
             </app-text-button>
-            <a (click)="iDontHaveARegistraionCodeClicked()">
+            <a (click)="iDontHaveARegistrationCodeClicked()">
                 I don't have a registration code
             </a>
         </div>
@@ -19,4 +20,27 @@
         <p>Where to find your registration code:</p>
         <img src="/reg-code.png">
     </div>
+    } @else {
+    <app-panel>
+        <div class="brand-appliance">
+            <i [class]="'fa-light fa-' + modelSerialNumberData().icon"></i>
+            <p class="bold-text">{{modelSerialNumberData().Brand}}
+                {{modelSerialNumberData().Type}}</p>
+        </div>
+        <div class="model-serial">
+            <p class="bold-text">Model number</p>
+            <p class="value">{{modelSerialNumberData().Model_Number}}</p>
+        </div>
+        <div class="model-serial">
+            <p class="bold-text">Serial number</p>
+            <p class="value">{{modelSerialNumberData().Serial_Number}}</p>
+        </div>
+    </app-panel>
+    <div class="actions">
+        <app-text-button [height]="48" [width]="128" [padding]="'0px 20px'" [fontSize]="20" color="primary"
+            (click)="continueClicked()">
+            <p>Continue</p>
+        </app-text-button>
+    </div>
+    }
 </app-page>

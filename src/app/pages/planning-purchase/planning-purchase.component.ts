@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { PageComponent } from "../../core/components/page/page.component";
+import { RegistrationService } from '../../core/services/registration.service';
 import { TextButtonComponent } from "../../shared/components/text-button/text-button.component";
 
 @Component({
-    selector: 'app-planning-purchase',
-    imports: [PageComponent, TextButtonComponent],
-    templateUrl: './planning-purchase.component.html',
-    styleUrl: './planning-purchase.component.scss'
+  selector: 'app-planning-purchase',
+  imports: [PageComponent, TextButtonComponent],
+  templateUrl: './planning-purchase.component.html',
+  styleUrl: './planning-purchase.component.scss'
 })
 export class PlanningPurchaseComponent {
 
@@ -28,6 +30,9 @@ export class PlanningPurchaseComponent {
 
   title = 'Are you planning to purchase any of these appliances in the next 12 months?';
 
+  registrationService = inject(RegistrationService);
+  router = inject(Router);
+
   onChange(event: Event, appliance: string) {
     const target = event.target as HTMLInputElement
     if (target.checked) {
@@ -38,6 +43,7 @@ export class PlanningPurchaseComponent {
   }
 
   continueClicked() {
-    this.onContinueClicked.emit(this.selectedAppliances);
+    this.registrationService.regData.plannedPurchases = this.selectedAppliances;
+    this.router.navigateByUrl('personal-details');
   }
 }

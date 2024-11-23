@@ -3,8 +3,8 @@ import { Injectable, ResourceStatus } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { brand } from '../../../../config/brand/brand';
 import { environment } from '../../../../config/environment/environment';
-import { ApplianceType } from '../../pages/appliance-type/appliance-type.container';
-import { Appliance } from '../../pages/appliance/appliance.container';
+import { Appliance } from '../models/appliance';
+import { ApplianceType } from '../models/appliance-type';
 
 @Injectable({
   providedIn: 'root'

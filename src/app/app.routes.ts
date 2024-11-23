@@ -2,18 +2,18 @@ import { Routes } from '@angular/router';
 import { brand } from '../../config/brand/brand';
 import { NavigationContainer } from './core/components/navigation/navigation.container';
 import { entryGuard } from './core/guards/entry.guard';
-import { ApplianceTypeContainer } from './pages/appliance-type/appliance-type.container';
-import { ApplianceContainer } from './pages/appliance/appliance.container';
-import { ArrivalDateContainer } from './pages/arrival-date/arrival-date.container';
-import { CostContainer } from './pages/cost/cost.container';
+import { ApplianceTypeComponent } from './pages/appliance-type/appliance-type.component';
+import { ApplianceComponent } from './pages/appliance/appliance.component';
+import { ArrivalDateComponent } from './pages/arrival-date/arrival-date.component';
+import { CostComponent } from './pages/cost/cost.component';
 import { HaveRegistrationCodeContainer } from './pages/have-registration-code/have-registration-code.container';
 import { ModelSerialNumberContainer } from './pages/model-serial-number/model-serial-number.container';
 import { PersonalDetailsContainer } from './pages/personal-details/personal-details.container';
-import { PlanningPurchaseContainer } from './pages/planning-purchase/planning-purchase.container';
+import { PlanningPurchaseComponent } from './pages/planning-purchase/planning-purchase.component';
 import { ProtectionDetailsContainer } from './pages/protection-details/protection-details.container';
 import { RegistrationCodeWithParamsComponent } from './pages/registration-code-with-params/registration-code-with-params.component';
 import { RegistrationCodeComponent } from './pages/registration-code/registration-code.component';
-import { ServicePlanContainer } from './pages/service-plan/service-plan.container';
+import { ServicePlanComponent } from './pages/service-plan/service-plan.component';
 
 export const routes: Routes = [
     {
@@ -28,11 +28,11 @@ export const routes: Routes = [
             },
             {
                 path: 'appliance-type',
-                component: ApplianceTypeContainer,
+                component: ApplianceTypeComponent,
             },
             {
                 path: 'appliance',
-                component: ApplianceContainer,
+                component: ApplianceComponent,
                 canActivate: [entryGuard]
             },
             {
@@ -57,22 +57,22 @@ export const routes: Routes = [
             },
             {
                 path: 'cost',
-                component: CostContainer,
+                component: CostComponent,
                 canActivate: [entryGuard]
             },
             {
                 path: 'arrival-date',
-                component: ArrivalDateContainer,
+                component: ArrivalDateComponent,
                 canActivate: [entryGuard]
             },
             {
                 path: 'service-plan',
-                component: ServicePlanContainer,
+                component: ServicePlanComponent,
                 canActivate: [entryGuard]
             },
             {
                 path: 'planning-purchase',
-                component: PlanningPurchaseContainer,
+                component: PlanningPurchaseComponent,
                 canActivate: [entryGuard]
             },
             {

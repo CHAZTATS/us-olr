@@ -98,49 +98,49 @@ export class RegistrationService {
       .pipe(map((result: { Items: SelectedAddressyAddress[] }) => result.Items[0]));
   }
 
-  // getQuote() {
-  //   return this.http.post<any>(`https://api.aws.ci.test.domgenusa-test.cloud/pr-127/quote`, {
-  //     "sessionId": "checking-123",
-  //     "client": "Whirlpool",
-  //     "channel": "Web",
-  //     "system": "Registria",
-  //     "country": "USA",
-  //     "currency": "USD",
-  //     "customer": {
-  //       "firstName": "Charles",
-  //       "lastName": "Taverner",
-  //       "email": "chaztats@gmail.com",
-  //       "phone": {
-  //         "Home": "07471949230"
-  //       },
-  //       "billingAddress": {
-  //         "line1": "180 Garth Rd Apt TE",
-  //         "line2": "",
-  //         "city": "Scarsdale",
-  //         "state": "NY",
-  //         "postalCode": "10583-3839",
-  //         "country": "USA"
-  //       }
-  //     },
-  //     "merchandise": [
-  //       {
-  //         "type": "Refrigerator",
-  //         "merchandiseInGoodWorkingOrder": true,
-  //         "brand": "KitchenAid",
-  //         "serialNumber": "KA1404511",
-  //         "modelNumber": "KBSN602EPA",
-  //         "purchaseDate": "2024-10-31",
-  //         "purchasePrice": "123",
-  //         "purchaseFrom": "",
-  //         "locatedAtMailingAddress": true
-  //       }
-  //     ]
-  //   });
-  // }
-
   getQuote() {
-    return this.http.post<any>(`https://api.aws.ci.test.domgenusa-test.cloud/pr-127/quote`, this.buildQuoteAPIRequest());
+    return this.http.post<any>(`https://api.aws.preprod.domgen-usa.com/v1/quote`, {
+      "sessionId": "checking-123",
+      "client": "Whirlpool",
+      "channel": "Web",
+      "system": "Registria",
+      "country": "USA",
+      "currency": "USD",
+      "customer": {
+        "firstName": "Charles",
+        "lastName": "Taverner",
+        "email": "chaztats@gmail.com",
+        "phone": {
+          "Home": "07471949230"
+        },
+        "billingAddress": {
+          "line1": "180 Garth Rd Apt TE",
+          "line2": "",
+          "city": "Scarsdale",
+          "state": "NY",
+          "postalCode": "10583-3839",
+          "country": "USA"
+        }
+      },
+      "merchandise": [
+        {
+          "type": "Refrigerator",
+          "merchandiseInGoodWorkingOrder": true,
+          "brand": "KitchenAid",
+          "serialNumber": "KA1404511",
+          "modelNumber": "KBSN602EPA",
+          "purchaseDate": "2024-10-31",
+          "purchasePrice": "123",
+          "purchaseFrom": "",
+          "locatedAtMailingAddress": true
+        }
+      ]
+    });
   }
+
+  // getQuote() {
+  //   return this.http.post<any>(`https://api.aws.preprod.domgen-usa.com/v1/quote`, this.buildQuoteAPIRequest());
+  // }
 
   buildQuoteAPIRequest(): QuoteAPIRequest {
     let request = new QuoteAPIRequest();

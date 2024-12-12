@@ -8,6 +8,7 @@ import { ArrivalDateComponent } from './pages/arrival-date/arrival-date.componen
 import { CostComponent } from './pages/cost/cost.component';
 import { HaveRegistrationCodeContainer } from './pages/have-registration-code/have-registration-code.container';
 import { ModelSerialNumberContainer } from './pages/model-serial-number/model-serial-number.container';
+import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 import { PersonalDetailsContainer } from './pages/personal-details/personal-details.container';
 import { PlanningPurchaseComponent } from './pages/planning-purchase/planning-purchase.component';
 import { ProtectionDetailsContainer } from './pages/protection-details/protection-details.container';
@@ -83,6 +84,11 @@ export const routes: Routes = [
             {
                 path: 'protection-details',
                 component: ProtectionDetailsContainer,
+                canActivate: []
+            },
+            {
+                path: 'order-confirmation',
+                component: OrderConfirmationComponent,
                 canActivate: []
             }
         ]

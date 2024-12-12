@@ -12,7 +12,9 @@
         @if(!loading()) {
         <ng-content></ng-content>
         } @else {
-        <app-spinner></app-spinner>
+        <div class="spinner">
+            <app-spinner></app-spinner>
+        </div>
         }
     </div>
 </div>

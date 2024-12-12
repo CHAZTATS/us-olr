@@ -58,14 +58,16 @@
             Please read and provide consent
         </div>
         <div class="checkbox">
-            <input type="checkbox">
-            <label>I agree to the terms of use and acknowledge the privacy notice of <a>Whirlpool</a> and <a>Domestic &
+            <input type="checkbox" [formControl]="termsAccepted">
+            <label>I agree to the terms of use and acknowledge the privacy notice of <a>Whirlpool</a> and
+                <a>Domestic &
                     General</a>.</label>
         </div>
     </div>
+    {{termsAccepted.getRawValue()}}
     <div class="actions">
         <app-text-button [height]="48" [width]="320" [padding]="'16px 20px'" [fontSize]="20" [fillWidth]="true"
-            color="primary" [disabled]="personalDetailsForm.invalid" (click)="continueClicked()">
+            color="primary" (click)="continueClicked()">
             <p>Continue</p>
         </app-text-button>
     </div>

@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, ResourceStatus } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { brand } from '../../../../config/brand/brand';
 import { environment } from '../../../../config/environment/environment';
@@ -22,8 +22,7 @@ export class RegistrationService {
   applianceTypes: ApplianceType[] = [];
   appliances: Appliance[] = [];
 
-  resourceStatus = ResourceStatus;
-  get: Observable<unknown>;
+  checkoutAccessToken: string;
 
   constructor(private http: HttpClient) {
     this.regData = new RegistrationData();
@@ -127,8 +126,8 @@ export class RegistrationService {
           "type": "Refrigerator",
           "merchandiseInGoodWorkingOrder": true,
           "brand": "KitchenAid",
-          "serialNumber": "KA1404511",
-          "modelNumber": "KBSN602EPA",
+          "serialNumber": "353213",
+          "modelNumber": "132132131",
           "purchaseDate": "2024-10-31",
           "purchasePrice": "123",
           "purchaseFrom": "",
@@ -141,6 +140,109 @@ export class RegistrationService {
   // getQuote() {
   //   return this.http.post<any>(`https://api.aws.preprod.domgen-usa.com/v1/quote`, this.buildQuoteAPIRequest());
   // }
+
+  getCheckoutAuth() {
+    const body = new HttpParams()
+      .set('grant_type', 'client_credentials')
+      .set('client_id', '607fs01m0nch6pf7gfk2t7od1j')
+      .set('client_secret', '10a6o4oalu4mnnuf0bkvafds1b2p1vjo7vkvles8k44noi064os6');
+
+    return this.http.post<CheckoutAuthResponse>(`https://prod-sandbox-regauth-internal.auth.us-east-1.amazoncognito.com/oauth2/token`, body);
+  }
+
+  getCheckoutUrl(quoteId: string) {
+    let data = {
+      "retailerDomain": "whirlpool.com",
+      "payload": {
+        "clientCode": "WHIRL",
+        "channelCode": "Web Reg",
+        "systemCode": "DandG_OLR",
+        "journeyCode": "REG",
+        "businessEventCode": "COCRE",
+        "businessSource": "WEB",
+        "interactionId": "whydoesntthiswork123",
+        "userId": "DGOLR",
+        "quoteId": quoteId,
+        "person": {
+          "initial": "N",
+          "firstName": "John",
+          "surname": "Nineteenth",
+          "phone": [
+            {
+              "type": "L",
+              "usage": "PER",
+              "value": "+19876543218",
+              "preferred": true
+            }
+          ],
+          "email": [
+            {
+              "usage": "PER",
+              "value": "nov19TESTone@dng.com",
+              "preferred": true
+            }
+          ],
+          "address": [
+            {
+              "addressLine1": "1002 Arlene Ct Apt 101",
+              "addressLine2": "",
+              "addressLine3": "Bloomington",
+              "region": "IL",
+              "postalCode": "61701",
+              "countryCode": "USA",
+              "addressCategoryCode": "BIL",
+              "addressOverride": false
+            }
+          ]
+        },
+        "item": [
+          {
+            "itemIterationId": 1,
+            "item": {
+              "itemTypeCode": "WSHR",
+              "manufacturerBrandCode": "WHIRL",
+              "modelNumber": "1CWTW4705GW",
+              "serialNumber": "CA0800839",
+              "operationalStatusCode": "W",
+              "purchase": {
+                "price": 891.65,
+                "currencyCode": "USD",
+                "date": "2024-09-01",
+                "retailer": "Whirlpool"
+              },
+              "address": [
+                {
+                  "addressLine1": "1002 Arlene Ct Apt 101",
+                  "addressLine2": "",
+                  "addressLine3": "Bloomington",
+                  "region": "IL",
+                  "postalCode": "61701",
+                  "countryCode": "USA",
+                  "addressCategoryCode": "BIL",
+                  "addressOverride": false
+                }
+              ]
+            }
+          }
+        ],
+        "contract": {
+          "isMultiplan": false,
+          "attributes": [
+            {
+              "itemIterationId": 1,
+              "netAmount": 6.99,
+              "salesTaxAmount": 0,
+              "salesTaxRate": 10,
+              "serviceAmount": 17.00,
+              "periodOfCover": 12,
+              "effectiveDate": "2024-11-25"
+            }
+          ]
+        }
+      }
+    };
+    return this.http.post<any>(`https://us.prod-sandbox.api.dg-click-integrations.com/v1/itb/direct`, data);
+  }
 
   buildQuoteAPIRequest(): QuoteAPIRequest {
     let request = new QuoteAPIRequest();
@@ -192,6 +294,12 @@ export class RegistrationService {
     console.log(request);
     return request;
   }
+}
+
+export interface CheckoutAuthResponse {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
 }
 
 export class QuoteAPIRequest {
@@ -287,22 +395,22 @@ export interface CatalogueAPIResponse {
 }
 
 export interface ModelSerialResponse {
-  Client_Code: string;
-  Brand_Code: string;
-  Item_Type_Code: string;
-  Default_Guarantee_Period_Parts: number;
-  Model_Number: string;
-  Serial_Number: string;
-  Country__c: string;
-  Client__c: string;
-  Serialization_Provider: string;
-  Serialization_Code: string;
-  Model_Reference: string;
-  Brand: string;
-  Type: string;
-  Default_Guarantee_Period_Labor: number;
-  LoadDate: Date;
-  LoadFilename: string;
+  clientCode: string;
+  brandCode: string;
+  itemTypeCode: string;
+  defaultGuaranteePeriodParts: number;
+  modelNumber: string;
+  serialNumber: string;
+  country: string;
+  client: string;
+  serializationProvider: string;
+  serializationCode: string;
+  modelReference: string;
+  brand: string;
+  type: string;
+  defaultGuaranteePeriodLabor: number;
+  loadDate: Date;
+  loadFilename: string;
   icon: string;
 }
 

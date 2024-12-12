@@ -6,9 +6,9 @@ import { Address, AddressyAddress, RegistrationService } from '../../core/servic
 import { PersonalDetailsComponent } from './personal-details.component';
 
 @Component({
-    selector: 'app-personal-details-container',
-    imports: [PersonalDetailsComponent, AsyncPipe],
-    templateUrl: './personal-details.container.html'
+  selector: 'app-personal-details-container',
+  imports: [PersonalDetailsComponent, AsyncPipe],
+  templateUrl: './personal-details.container.html'
 })
 export class PersonalDetailsContainer {
 
@@ -46,8 +46,14 @@ export class PersonalDetailsContainer {
   continueClicked(personalDetailsFormGroup: FormGroup) {
     this.registrationService.regData.customer = personalDetailsFormGroup.getRawValue();
     this.registrationService.getQuote().subscribe(x => {
-      console.log(x);
-    })
+      let quoteId = x[0].Id;
+      this.registrationService.getCheckoutAuth().subscribe(x => {
+        this.registrationService.checkoutAccessToken = x.access_token;
+        this.registrationService.getCheckoutUrl(quoteId).subscribe(x => {
+          window.location.href = `${x.paymentRedirectUrl}&redirect=localhost:4200/order-confirmation`;
+        })
+      })
+    });
   }
 
 }

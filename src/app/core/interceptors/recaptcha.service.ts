@@ -8,13 +8,15 @@ import {
 import { Injectable } from '@angular/core';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { filter, mergeMap, Observable } from 'rxjs';
+import * as uuid from 'uuid';
 import { environment } from '../../../../config/environment/environment';
+import { RegistrationService } from '../services/registration.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecaptchaService implements HttpInterceptor {
-  constructor(private recaptchaService: ReCaptchaV3Service) { }
+  constructor(private recaptchaService: ReCaptchaV3Service, private registrationService: RegistrationService) { }
 
   intercept(
     req: HttpRequest<any>,
@@ -23,15 +25,32 @@ export class RecaptchaService implements HttpInterceptor {
     return this.recaptchaService.execute('getToken').pipe(
       filter((token) => !!token),
       mergeMap((token: string) => {
-        let newHeaders = this.addAuthHeaders(req.headers, token);
-        if (req.url.includes('serialization')) {
-          newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.modelSerialAPIKey);
+
+        if (req.url.includes('itb/direct')) {
+          let headers = new HttpHeaders();
+          headers = headers.append('Authorization', `Bearer ${this.registrationService.checkoutAccessToken}`);
+          headers = headers.append('X-Request-Id', uuid.v4());
+          const newReq = req.clone({ headers: headers });
+          return next.handle(newReq);
         }
-        if (req.url.includes('quote') || req.url.includes('plan')) {
-          newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.quoteAPIKey);
+
+        if (!req.url.includes('oauth2')) {
+          let newHeaders = this.addAuthHeaders(req.headers, token);
+          if (req.url.includes('serialization')) {
+            newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.modelSerialAPIKey);
+          }
+          if (req.url.includes('quote') || req.url.includes('plan')) {
+            newHeaders = newHeaders.append(AuthHeaderNames.X_API_KEY, environment.quoteAPIKey);
+          }
+          const newReq = req.clone({ headers: newHeaders });
+          return next.handle(newReq);
+        } else {
+          let headers = new HttpHeaders();
+          headers = headers.append('content-type', 'application/x-www-form-urlencoded');
+          const newReq = req.clone({ headers: headers });
+          console.log(newReq);
+          return next.handle(newReq);
         }
-        const newReq = req.clone({ headers: newHeaders });
-        return next.handle(newReq);
       })
     );
   }

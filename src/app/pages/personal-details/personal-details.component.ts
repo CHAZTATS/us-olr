@@ -29,6 +29,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   manualAddress = false;
 
   addressSearch = new FormControl('');
+  termsAccepted = new FormControl(false);
   isAddressSelected = false;
 
   personalDetailsForm = new FormGroup({

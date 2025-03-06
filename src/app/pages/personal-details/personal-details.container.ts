@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Address, AddressyAddress, RegistrationService } from '../../core/services/registration.service';
 import { PersonalDetailsComponent } from './personal-details.component';
@@ -19,6 +20,8 @@ export class PersonalDetailsContainer {
   constructor(private registrationService: RegistrationService) {
     this.data = registrationService.regData;
   }
+
+  route = inject(ActivatedRoute)
 
   addressSearchChanged(search: string) {
     this.addresses$ = this.registrationService.searchAddress(search).pipe(
@@ -44,15 +47,19 @@ export class PersonalDetailsContainer {
   }
 
   continueClicked(personalDetailsFormGroup: FormGroup) {
+    // this.registrationService.registria().subscribe(
+    //   x => console.log(x)
+    // );
     this.registrationService.regData.customer = personalDetailsFormGroup.getRawValue();
     this.registrationService.getQuote().subscribe(x => {
       let quoteId = x[0].Id;
-      this.registrationService.getCheckoutAuth().subscribe(x => {
-        this.registrationService.checkoutAccessToken = x.access_token;
-        this.registrationService.getCheckoutUrl(quoteId).subscribe(x => {
-          window.location.href = `${x.paymentRedirectUrl}&redirect=localhost:4200/order-confirmation`;
-        })
-      })
+      // this.registrationService.getCheckoutAuth().subscribe(x => {
+      //   this.registrationService.checkoutAccessToken = x.access_token;
+      //   this.registrationService.getCheckoutUrl(quoteId).subscribe(x => {
+      //     console.log(location.origin);
+      //     window.location.href = `${x.paymentRedirectUrl}&redirect=localhost:4200/order-confirmation`;
+      //   })
+      // })
     });
   }
 

@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { brand } from '../../../../config/brand/brand';
+import * as uuid from 'uuid';
+import { brand } from '../../../../config/country/us/brand/brand';
 import { environment } from '../../../../config/environment/environment';
 import { Appliance } from '../models/appliance';
 import { ApplianceType } from '../models/appliance-type';
@@ -113,11 +114,11 @@ export class RegistrationService {
           "Home": "07471949230"
         },
         "billingAddress": {
-          "line1": "180 Garth Rd Apt TE",
+          "line1": "Lizard Tail Ln",
           "line2": "",
-          "city": "Scarsdale",
-          "state": "NY",
-          "postalCode": "10583-3839",
+          "city": "Raleigh",
+          "state": "MD",
+          "postalCode": "27603",
           "country": "USA"
         }
       },
@@ -137,9 +138,16 @@ export class RegistrationService {
     });
   }
 
+  registria() {
+    let body = {
+    };
+    return this.http.post<any>('https://whirlpool.registriaqa.com/platform/v1/users?api_key=eqZf-Rk_TLxbBoj_pyLB_w&user[email]=john.smith@example.com&user[token]=&user[plan_previously_purchased]=&user[phone]=&user[name]=&user[address_attributes][address1]=&user[address_attributes][address2]=&user[address_attributes][zip]=&user[address_attributes][city]=&user[address_attributes][state]=&user[address_attributes][country]=&product[brand_name]=&product[sku]=SKU123&product[serial_number]=&product[purchase_date]=&product[purchased_at]=&order[order_number]=&order[created_at]=&order[sku]=&order[total]=', body);
+  }
+
   // getQuote() {
   //   return this.http.post<any>(`https://api.aws.preprod.domgen-usa.com/v1/quote`, this.buildQuoteAPIRequest());
   // }
+  //
 
   getCheckoutAuth() {
     const body = new HttpParams()
@@ -147,101 +155,88 @@ export class RegistrationService {
       .set('client_id', '607fs01m0nch6pf7gfk2t7od1j')
       .set('client_secret', '10a6o4oalu4mnnuf0bkvafds1b2p1vjo7vkvles8k44noi064os6');
 
+    console.log(body);
+
     return this.http.post<CheckoutAuthResponse>(`https://prod-sandbox-regauth-internal.auth.us-east-1.amazoncognito.com/oauth2/token`, body);
   }
 
   getCheckoutUrl(quoteId: string) {
     let data = {
-      "retailerDomain": "whirlpool.com",
+      "retailerDomain": `${brand.domain}`,
       "payload": {
         "clientCode": "WHIRL",
-        "channelCode": "Web Reg",
+        "channelCode": "DGOLR",
         "systemCode": "DandG_OLR",
         "journeyCode": "REG",
         "businessEventCode": "COCRE",
         "businessSource": "WEB",
-        "interactionId": "whydoesntthiswork123",
-        "userId": "DGOLR",
+        "interactionId": uuid.v4(),
+        "userId": "USOLR",
         "quoteId": quoteId,
         "person": {
-          "initial": "N",
+          "initial": "",
           "firstName": "John",
           "surname": "Nineteenth",
-          "phone": [
-            {
-              "type": "L",
-              "usage": "PER",
-              "value": "+19876543218",
-              "preferred": true
-            }
-          ],
-          "email": [
-            {
-              "usage": "PER",
-              "value": "nov19TESTone@dng.com",
-              "preferred": true
-            }
-          ],
-          "address": [
-            {
-              "addressLine1": "1002 Arlene Ct Apt 101",
-              "addressLine2": "",
-              "addressLine3": "Bloomington",
-              "region": "IL",
-              "postalCode": "61701",
-              "countryCode": "USA",
-              "addressCategoryCode": "BIL",
-              "addressOverride": false
-            }
-          ]
+          "phone": [{
+            "type": "L",
+            "usage": "PER",
+            "value": "+19876543218",
+            "preferred": true
+          }],
+          "email": [{
+            "usage": "PER",
+            "value": "thomas.randell@domesticandgeneral.com",
+            "preferred": true
+          }],
+          "address": [{
+            "addressCategoryCode": "BIL",
+            "addressLine1": "Lizard Tail Ln",
+            "addressLine2": "",
+            "addressLine3": "Raleigh",
+            "postalCode": "27603",
+            "region": "MD",
+            "countryCode": "USA",
+            "addressOverride": false
+          }]
         },
-        "item": [
-          {
-            "itemIterationId": 1,
-            "item": {
-              "itemTypeCode": "WSHR",
-              "manufacturerBrandCode": "WHIRL",
-              "modelNumber": "1CWTW4705GW",
-              "serialNumber": "CA0800839",
-              "operationalStatusCode": "W",
-              "purchase": {
-                "price": 891.65,
-                "currencyCode": "USD",
-                "date": "2024-09-01",
-                "retailer": "Whirlpool"
-              },
-              "address": [
-                {
-                  "addressLine1": "1002 Arlene Ct Apt 101",
-                  "addressLine2": "",
-                  "addressLine3": "Bloomington",
-                  "region": "IL",
-                  "postalCode": "61701",
-                  "countryCode": "USA",
-                  "addressCategoryCode": "BIL",
-                  "addressOverride": false
-                }
-              ]
-            }
+        "item": [{
+          "itemIterationId": 1,
+          "item": {
+            "itemTypeCode": "WSHR",
+            "manufacturerBrandCode": "WHIRL",
+            "serialNumber": "KA1404511",
+            "modelNumber": "KBSN602EPA",
+            "operationalStatusCode": "W",
+            "purchase": {
+              "price": 123,
+              "currencyCode": "USD",
+              "date": "2024-10-31",
+              "retailer": "Whirlpool"
+            },
+            "address": [{
+              "addressCategoryCode": "BIL",
+              "addressLine1": "Lizard Tail Ln",
+              "addressLine2": "",
+              "addressLine3": "Raleigh",
+              "postalCode": "27603",
+              "region": "MD",
+              "countryCode": "USA",
+              "addressOverride": false
+            }]
           }
-        ],
+        }],
         "contract": {
           "isMultiplan": false,
-          "attributes": [
-            {
-              "itemIterationId": 1,
-              "netAmount": 6.99,
-              "salesTaxAmount": 0,
-              "salesTaxRate": 10,
-              "serviceAmount": 17.00,
-              "periodOfCover": 12,
-              "effectiveDate": "2024-11-25"
-            }
-          ]
+          "attributes": [{
+            "itemIterationId": 1,
+            "netAmount": 9.99, //amount without tax
+            "periodOfCover": 12,
+            "effectiveDate": "2024-12-10"
+          }]
         }
       }
     };
-    return this.http.post<any>(`https://us.prod-sandbox.api.dg-click-integrations.com/v1/itb/direct`, data);
+    return this.http.post<any>(`https://api.aws.test.test.domgenusa-test.cloud/v1/checkout-proxy`, data);
   }
 
   buildQuoteAPIRequest(): QuoteAPIRequest {
@@ -496,4 +491,90 @@ export interface SelectedAddressyAddress {
   Street: string;
   SubBuilding: string;
   Type: string;
+}
+
+interface Phone {
+  type: string;
+  usage: string;
+  value: string;
+  preferred: boolean;
+}
+
+interface Email {
+  usage: string;
+  value: string;
+  preferred: boolean;
+}
+
+interface Address2 {
+  addressLine1: string;
+  addressLine2: string;
+  addressLine3: string;
+  region: string;
+  postalCode: string;
+  countryCode: string;
+  addressCategoryCode: string;
+  addressOverride: boolean;
+}
+
+interface ItemPurchase {
+  price: number;
+  currencyCode: string;
+  date: string;
+  retailer: string;
+}
+
+interface Item {
+  itemIterationId: number;
+  item: {
+    itemTypeCode: string;
+    manufacturerBrandCode: string;
+    serialNumber: string;
+    modelNumber: string;
+    operationalStatusCode: string;
+    purchase: ItemPurchase;
+    address: Address[];
+  };
+}
+
+interface ContractAttribute {
+  itemIterationId: number;
+  netAmount: number;
+  salesTaxAmount: number;
+  salesTaxRate: number;
+  serviceAmount: number;
+  periodOfCover: number;
+  effectiveDate: string;
+}
+
+interface Contract {
+  isMultiplan: boolean;
+  attributes: ContractAttribute[];
+}
+
+interface Payload {
+  clientCode: string;
+  channelCode: string;
+  systemCode: string;
+  journeyCode: string;
+  businessEventCode: string;
+  businessSource: string;
+  interactionId: string;
+  userId: string;
+  quoteId: string;
+  person: {
+    initial: string;
+    firstName: string;
+    surname: string;
+    phone: Phone[];
+    email: Email[];
+    address: Address2[];
+  };
+  item: Item[];
+  contract: Contract;
+}
+
+interface Request {
+  retailerDomain: string;
+  payload: Payload;
 }

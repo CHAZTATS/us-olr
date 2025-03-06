@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { brand } from '../../config/brand/brand';
+import { brand } from '../../config/country/us/brand/brand';
 import { NavigationContainer } from './core/components/navigation/navigation.container';
-import { entryGuard } from './core/guards/entry.guard';
 import { ApplianceTypeComponent } from './pages/appliance-type/appliance-type.component';
 import { ApplianceComponent } from './pages/appliance/appliance.component';
 import { ArrivalDateComponent } from './pages/arrival-date/arrival-date.component';
@@ -34,52 +33,52 @@ export const routes: Routes = [
             {
                 path: 'appliance',
                 component: ApplianceComponent,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'have-registration-code',
                 component: HaveRegistrationCodeContainer,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'registration-code',
                 component: RegistrationCodeComponent,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'registration-code-with-params',
                 component: RegistrationCodeWithParamsComponent,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'model-serial-number',
                 component: ModelSerialNumberContainer,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'cost',
                 component: CostComponent,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'arrival-date',
                 component: ArrivalDateComponent,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'service-plan',
                 component: ServicePlanComponent,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'planning-purchase',
                 component: PlanningPurchaseComponent,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'personal-details',
                 component: PersonalDetailsContainer,
-                canActivate: [entryGuard]
+                canActivate: []
             },
             {
                 path: 'protection-details',
